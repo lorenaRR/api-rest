@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BibliotecaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="BibliotecaEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="up_Usuarios_SEL_SeleccionarUsuarios" ReturnType="Collection(BibliotecaModel.SeleccionarUsuariosDTO)">
+      <Parameter Name="dni" Mode="In" Type="String" />
+      <Parameter Name="admin" Mode="In" Type="Byte" />
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="apellidos" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="SeleccionarUsuariosDTO">
+    <Property Type="String" Name="dni" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="apellidos" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="direccion" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="telefono" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="email" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="usuario" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="admin" Nullable="true" />
+  </ComplexType>
+</Schema>

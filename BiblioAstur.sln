@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31911.196
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiblioAstur", "BiblioAstur\BiblioAstur.csproj", "{F6B791E7-06AD-46FD-A313-BB2C34DAB046}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiblioAstur.Tests", "BiblioAstur.Tests\BiblioAstur.Tests.csproj", "{BCDF2E70-6DFC-4135-A9C0-947297D78D18}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F6B791E7-06AD-46FD-A313-BB2C34DAB046}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6B791E7-06AD-46FD-A313-BB2C34DAB046}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6B791E7-06AD-46FD-A313-BB2C34DAB046}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6B791E7-06AD-46FD-A313-BB2C34DAB046}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCDF2E70-6DFC-4135-A9C0-947297D78D18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCDF2E70-6DFC-4135-A9C0-947297D78D18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCDF2E70-6DFC-4135-A9C0-947297D78D18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCDF2E70-6DFC-4135-A9C0-947297D78D18}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5E19127F-1139-437B-A9CD-2D99394E87E7}
+	EndGlobalSection
+EndGlobal
