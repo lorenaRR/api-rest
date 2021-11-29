@@ -23,22 +23,27 @@ namespace BiblioAstur.Controllers
         }
 
         // GET: api/SeleccionarUsuariosDTO/5
+
         [ResponseType(typeof(SeleccionarUsuariosDTO))]
-        //[HttpGet]
+        [HttpGet]
         //[ResponseType(typeof(List<SeleccionarUsuariosDTO>))]
-        //[Route("api/Usuarios/SeleccionarUsuarios")]
+        [Route("api/Usuarios/SeleccionarUsuarios")]
 
-        public IHttpActionResult GetSeleccionarUsuariosDTO(string id)
+        public IHttpActionResult SeleccionarUsuarios(string id)
+
         {
-            /*List<SeleccionarUsuariosDTO> lista = null;
 
+            /*List<SeleccionarUsuariosDTO> lista = null;
             using (SGRi_2_0 SGRi_2_0 = new SGRi_2_0())
             {
                 lista = SGRi_2_0.up_Usuarios_SEL_SeleccionarUsuarios(id).ToList();
             }
+
             return Ok(lista);*/
 
+
             SeleccionarUsuariosDTO seleccionarUsuariosDTO = db.SeleccionarUsuariosDTOes.Find(id);
+
             if (seleccionarUsuariosDTO == null)
             {
                 return NotFound();
