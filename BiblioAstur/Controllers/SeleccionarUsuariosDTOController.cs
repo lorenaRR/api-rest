@@ -32,24 +32,15 @@ namespace BiblioAstur.Controllers
         public IHttpActionResult SeleccionarUsuarios(string id)
 
         {
+            List <SeleccionarUsuariosDTO> lista = null;
+            lista = this.db.up_Usuarios_SEL_SeleccionarUsuarios(id, 1, "", "").ToList();
 
-            /*List<SeleccionarUsuariosDTO> lista = null;
-            using (SGRi_2_0 SGRi_2_0 = new SGRi_2_0())
-            {
-                lista = SGRi_2_0.up_Usuarios_SEL_SeleccionarUsuarios(id).ToList();
-            }
-
-            return Ok(lista);*/
-
-
-            SeleccionarUsuariosDTO seleccionarUsuariosDTO = db.SeleccionarUsuariosDTOes.Find(id);
-
-            if (seleccionarUsuariosDTO == null)
+            if (lista.Count == 0)
             {
                 return NotFound();
             }
 
-            return Ok(seleccionarUsuariosDTO);
+            return Ok(lista);
 
         }
 
