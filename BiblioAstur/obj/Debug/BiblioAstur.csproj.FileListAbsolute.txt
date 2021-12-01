@@ -156,7 +156,9 @@ C:\Users\USUARIO\Documents\GitHub\api-rest\BiblioAstur\bin\Microsoft.CodeDom.Pro
 C:\Users\USUARIO\Documents\GitHub\api-rest\BiblioAstur\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\USUARIO\Documents\GitHub\api-rest\BiblioAstur\bin\Newtonsoft.Json.dll
 C:\Users\USUARIO\Documents\GitHub\api-rest\BiblioAstur\bin\System.Net.Http.Formatting.dll
+C:\Users\USUARIO\Documents\GitHub\api-rest\BiblioAstur\bin\System.Web.Cors.dll
 C:\Users\USUARIO\Documents\GitHub\api-rest\BiblioAstur\bin\System.Web.Helpers.dll
+C:\Users\USUARIO\Documents\GitHub\api-rest\BiblioAstur\bin\System.Web.Http.Cors.dll
 C:\Users\USUARIO\Documents\GitHub\api-rest\BiblioAstur\bin\System.Web.Http.dll
 C:\Users\USUARIO\Documents\GitHub\api-rest\BiblioAstur\bin\System.Web.Http.WebHost.dll
 C:\Users\USUARIO\Documents\GitHub\api-rest\BiblioAstur\bin\System.Web.Mvc.dll
@@ -168,6 +170,7 @@ C:\Users\USUARIO\Documents\GitHub\api-rest\BiblioAstur\bin\System.Web.WebPages.R
 C:\Users\USUARIO\Documents\GitHub\api-rest\BiblioAstur\bin\WebGrease.dll
 C:\Users\USUARIO\Documents\GitHub\api-rest\BiblioAstur\bin\EntityFramework.xml
 C:\Users\USUARIO\Documents\GitHub\api-rest\BiblioAstur\bin\EntityFramework.SqlServer.xml
+C:\Users\USUARIO\Documents\GitHub\api-rest\BiblioAstur\bin\System.Web.Http.Cors.xml
 C:\Users\USUARIO\Documents\GitHub\api-rest\BiblioAstur\bin\Newtonsoft.Json.xml
 C:\Users\USUARIO\Documents\GitHub\api-rest\BiblioAstur\bin\System.Net.Http.Formatting.xml
 C:\Users\USUARIO\Documents\GitHub\api-rest\BiblioAstur\bin\System.Web.Helpers.xml

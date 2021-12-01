@@ -22,18 +22,34 @@ namespace BiblioAstur.Controllers
             return db.SeleccionarUsuariosDTOes;
         }
 
-        // GET: api/SeleccionarUsuariosDTO/5
+        // GET: api/SeleccionarUsuarioDTO/5
 
         [ResponseType(typeof(SeleccionarUsuariosDTO))]
         [HttpGet]
-        //[ResponseType(typeof(List<SeleccionarUsuariosDTO>))]
         [Route("api/Usuarios/SeleccionarUsuarios")]
 
-        public IHttpActionResult SeleccionarUsuarios(string id)
+        public IHttpActionResult SeleccionarUsuarios(string id, byte admin, string nombre, string apellidos)
 
         {
             List <SeleccionarUsuariosDTO> lista = null;
-            lista = this.db.up_Usuarios_SEL_SeleccionarUsuarios(id, 1, "", "").ToList();
+            
+
+            if (id == null)
+            {
+                id = "";
+            }
+            if (nombre == null)
+            {
+                nombre = "";
+            }
+            if (apellidos == null)
+            {
+                apellidos = "";
+            }   
+
+
+
+            lista = this.db.up_Usuarios_SEL_SeleccionarUsuarios(id, admin, nombre, apellidos).ToList();
 
             if (lista.Count == 0)
             {
@@ -43,6 +59,7 @@ namespace BiblioAstur.Controllers
             return Ok(lista);
 
         }
+
 
         // PUT: api/SeleccionarUsuariosDTO/5
         [ResponseType(typeof(void))]

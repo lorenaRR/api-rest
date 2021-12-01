@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace BiblioAstur
 {
@@ -19,6 +20,14 @@ namespace BiblioAstur
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            // Allow CORS for all origins
+
+            EnableCorsAttribute allowCorsAllOrigins = new EnableCorsAttribute("*", "*", "*");
+
+            // Enabling Cross-Origin Requests
+
+            config.EnableCors(allowCorsAllOrigins);
         }
     }
 }
