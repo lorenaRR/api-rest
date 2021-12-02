@@ -48,6 +48,8 @@ namespace BiblioAstur.Controllers
                 apellidos = "";
             }
 
+
+
             lista = this.db.up_Usuarios_SEL_SeleccionarUsuarios(id, admin, nombre, apellidos).ToList();
 
 

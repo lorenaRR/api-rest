@@ -7,6 +7,18 @@
       <Parameter Name="nombre" Mode="In" Type="String" />
       <Parameter Name="apellidos" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="up_Usuarios_INS_InsertarUsuario" ReturnType="Collection(BibliotecaModel.InsertarUsuarioDTO)">
+      <Parameter Name="dni" Mode="In" Type="String" />
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="apellidos" Mode="In" Type="String" />
+      <Parameter Name="direccion" Mode="In" Type="String" />
+      <Parameter Name="telefono" Mode="In" Type="String" />
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="usuario" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+      <Parameter Name="admin" Mode="In" Type="Boolean" />
+      <Parameter Name="Estado" Mode="InOut" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="SeleccionarUsuariosDTO">
     <Property Type="String" Name="dni" Nullable="false" MaxLength="50" />
@@ -17,5 +29,8 @@
     <Property Type="String" Name="email" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="usuario" Nullable="true" MaxLength="50" />
     <Property Type="Boolean" Name="admin" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="InsertarUsuarioDTO">
+    <Property Type="Int32" Name="Column1" Nullable="false" />
   </ComplexType>
 </Schema>
