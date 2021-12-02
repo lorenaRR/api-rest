@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Cors;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using EnableCorsAttribute = System.Web.Http.Cors.EnableCorsAttribute;
 
 namespace BiblioAstur
 {
@@ -28,6 +30,8 @@ namespace BiblioAstur
             // Enabling Cross-Origin Requests
 
             config.EnableCors(allowCorsAllOrigins);
+
+
         }
     }
 }
