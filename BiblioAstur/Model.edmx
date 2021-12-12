@@ -5,6 +5,13 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="BibliotecaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="up_Libros_SEL_SeleccionarLibros" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="isbn" Type="varchar" Mode="In" />
+          <Parameter Name="titulo" Type="varchar" Mode="In" />
+          <Parameter Name="subtitulo" Type="varchar" Mode="In" />
+          <Parameter Name="editorial" Type="varchar" Mode="In" />
+          <Parameter Name="autor" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="up_Usuarios_DEL_BorrarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="dni" Type="nvarchar" Mode="In" />
           <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
@@ -79,6 +86,13 @@
             <Parameter Name="dni" Mode="In" Type="String" />
             <Parameter Name="Estado" Mode="InOut" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="up_Libros_SEL_SeleccionarLibros" ReturnType="Collection(BibliotecaModel.SeleccionarLibrosDTO)">
+            <Parameter Name="isbn" Mode="In" Type="String" />
+            <Parameter Name="titulo" Mode="In" Type="String" />
+            <Parameter Name="subtitulo" Mode="In" Type="String" />
+            <Parameter Name="editorial" Mode="In" Type="String" />
+            <Parameter Name="autor" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="SeleccionarUsuariosDTO">
           <Property Type="String" Name="dni" Nullable="false" MaxLength="50" />
@@ -89,6 +103,21 @@
           <Property Type="String" Name="email" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="usuario" Nullable="true" MaxLength="50" />
           <Property Type="Boolean" Name="admin" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SeleccionarLibrosDTO">
+          <Property Type="String" Name="id_libros" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="isbn" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="titulo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="subtitulo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="apelldios" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="categoria" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="fechaPublicacion" Nullable="true" />
+          <Property Type="String" Name="editorial" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="descripcion" Nullable="true" MaxLength="Max" />
+          <Property Type="Int32" Name="nPaginas" Nullable="true" />
+          <Property Type="String" Name="imagen" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="stock" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -114,6 +143,25 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="up_Usuarios_UPD_ActualizarUsuario" FunctionName="BibliotecaModel.Store.up_Usuarios_UPD_ActualizarUsuario" />
           <FunctionImportMapping FunctionImportName="up_Usuarios_DEL_BorrarUsuario" FunctionName="BibliotecaModel.Store.up_Usuarios_DEL_BorrarUsuario" />
+          <FunctionImportMapping FunctionImportName="up_Libros_SEL_SeleccionarLibros" FunctionName="BibliotecaModel.Store.up_Libros_SEL_SeleccionarLibros">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BibliotecaModel.SeleccionarLibrosDTO">
+                <ScalarProperty Name="id_libros" ColumnName="id_libros" />
+                <ScalarProperty Name="isbn" ColumnName="isbn" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="subtitulo" ColumnName="subtitulo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apelldios" ColumnName="apelldios" />
+                <ScalarProperty Name="categoria" ColumnName="categoria" />
+                <ScalarProperty Name="fechaPublicacion" ColumnName="fechaPublicacion" />
+                <ScalarProperty Name="editorial" ColumnName="editorial" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="nPaginas" ColumnName="nPaginas" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
+                <ScalarProperty Name="stock" ColumnName="stock" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

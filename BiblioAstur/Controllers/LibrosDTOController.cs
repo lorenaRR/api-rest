@@ -13,37 +13,45 @@ using BiblioAstur;
 
 namespace BiblioAstur.Controllers
 {
-    public class SeleccionarUsuariosDTOController : ApiController
+    
+    public class LibrosDTOController : ApiController
     {
         private BibliotecaEntities db = new BibliotecaEntities();
 
         // GET: api/SeleccionarUsuariosDTO/5
-
-        [ResponseType(typeof(SeleccionarUsuariosDTO))]
+        [ResponseType(typeof(SeleccionarLibrosDTO))]
         [HttpGet]
-        //[ResponseType(typeof(List<SeleccionarUsuariosDTO>))]
-        [Route("api/Usuarios/SeleccionarUsuarios")]
+        [Route("api/Libros/SeleccionarLibros")]
 
-        public IHttpActionResult SeleccionarUsuarios(string id, byte admin, string nombre, string apellidos)
+        public IHttpActionResult SeleccionarLibros(string isbn, string titulo, string subtitulo, string editorial, string autor)
 
         {
-            List<SeleccionarUsuariosDTO> lista = null;
+            List<SeleccionarLibrosDTO> lista = null;
 
 
-            if (id == null)
+            if (isbn == null)
             {
-                id = "";
+                isbn = "";
             }
-            if (nombre == null)
+            if (titulo == null)
             {
-                nombre = "";
+                titulo = "";
             }
-            if (apellidos == null)
+            if (subtitulo == null)
             {
-                apellidos = "";
+                subtitulo = "";
+            }
+            if (editorial == null)
+            {
+                editorial = "";
+            }
+            if (autor == null)
+            {
+                autor = "";
             }
 
-            lista = this.db.up_Usuarios_SEL_SeleccionarUsuarios(id, admin, nombre, apellidos).ToList();
+
+            lista = this.db.up_Libros_SEL_SeleccionarLibros(isbn, titulo, subtitulo, editorial, autor).ToList();
 
             if (lista.Count == 0)
             {
@@ -61,6 +69,5 @@ namespace BiblioAstur.Controllers
             }
             base.Dispose(disposing);
         }
-
     }
 }

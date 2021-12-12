@@ -178,6 +178,38 @@ public partial class BibliotecaEntities : DbContext
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("up_Usuarios_DEL_BorrarUsuario", dniParameter, estado);
     }
 
+
+    public virtual ObjectResult<SeleccionarLibrosDTO> up_Libros_SEL_SeleccionarLibros(string isbn, string titulo, string subtitulo, string editorial, string autor)
+    {
+
+        var isbnParameter = isbn != null ?
+            new ObjectParameter("isbn", isbn) :
+            new ObjectParameter("isbn", typeof(string));
+
+
+        var tituloParameter = titulo != null ?
+            new ObjectParameter("titulo", titulo) :
+            new ObjectParameter("titulo", typeof(string));
+
+
+        var subtituloParameter = subtitulo != null ?
+            new ObjectParameter("subtitulo", subtitulo) :
+            new ObjectParameter("subtitulo", typeof(string));
+
+
+        var editorialParameter = editorial != null ?
+            new ObjectParameter("editorial", editorial) :
+            new ObjectParameter("editorial", typeof(string));
+
+
+        var autorParameter = autor != null ?
+            new ObjectParameter("autor", autor) :
+            new ObjectParameter("autor", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SeleccionarLibrosDTO>("up_Libros_SEL_SeleccionarLibros", isbnParameter, tituloParameter, subtituloParameter, editorialParameter, autorParameter);
+    }
+
 }
 
 }

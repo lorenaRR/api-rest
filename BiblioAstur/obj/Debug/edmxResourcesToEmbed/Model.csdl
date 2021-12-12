@@ -35,6 +35,13 @@
       <Parameter Name="dni" Mode="In" Type="String" />
       <Parameter Name="Estado" Mode="InOut" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="up_Libros_SEL_SeleccionarLibros" ReturnType="Collection(BibliotecaModel.SeleccionarLibrosDTO)">
+      <Parameter Name="isbn" Mode="In" Type="String" />
+      <Parameter Name="titulo" Mode="In" Type="String" />
+      <Parameter Name="subtitulo" Mode="In" Type="String" />
+      <Parameter Name="editorial" Mode="In" Type="String" />
+      <Parameter Name="autor" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="SeleccionarUsuariosDTO">
     <Property Type="String" Name="dni" Nullable="false" MaxLength="50" />
@@ -45,5 +52,20 @@
     <Property Type="String" Name="email" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="usuario" Nullable="true" MaxLength="50" />
     <Property Type="Boolean" Name="admin" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SeleccionarLibrosDTO">
+    <Property Type="String" Name="id_libros" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="isbn" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="titulo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="subtitulo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="apelldios" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="categoria" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="fechaPublicacion" Nullable="true" />
+    <Property Type="String" Name="editorial" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="descripcion" Nullable="true" MaxLength="Max" />
+    <Property Type="Int32" Name="nPaginas" Nullable="true" />
+    <Property Type="String" Name="imagen" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="stock" Nullable="true" />
   </ComplexType>
 </Schema>
