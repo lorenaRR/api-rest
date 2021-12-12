@@ -220,14 +220,16 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\ActualizarUsuariosDTOController.cs" />
+    <Compile Include="Controllers\BorrarUsuariosControllerDTO.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InsertarUsuariosDTOController.cs" />
+    <Compile Include="Controllers\ResultadoDTO.cs" />
     <Compile Include="Controllers\SeleccionarUsuariosDTOController.cs" />
+    <Compile Include="Controllers\UsuariosDTOController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="InsertarUsuarioDTO.cs">
-      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model.Context.cs">
       <AutoGen>True</AutoGen>
@@ -320,6 +322,10 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\ActualizarUsuariosDTO\" />
+    <Folder Include="Views\BorrarUsuariosControllerDTO\" />
+    <Folder Include="Views\InsertarUsuariosDTO\" />
+    <Folder Include="Views\UsuariosDTO\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

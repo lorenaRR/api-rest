@@ -5,6 +5,10 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="BibliotecaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="up_Usuarios_DEL_BorrarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="dni" Type="nvarchar" Mode="In" />
+          <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
+        </Function>
         <Function Name="up_Usuarios_INS_InsertarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="dni" Type="nvarchar" Mode="In" />
           <Parameter Name="nombre" Type="nvarchar" Mode="In" />
@@ -23,6 +27,18 @@
           <Parameter Name="nombre" Type="varchar" Mode="In" />
           <Parameter Name="apellidos" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="up_Usuarios_UPD_ActualizarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="dni" Type="nvarchar" Mode="In" />
+          <Parameter Name="nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="apellidos" Type="nvarchar" Mode="In" />
+          <Parameter Name="direccion" Type="nvarchar" Mode="In" />
+          <Parameter Name="telefono" Type="nvarchar" Mode="In" />
+          <Parameter Name="email" Type="nvarchar" Mode="In" />
+          <Parameter Name="usuario" Type="nvarchar" Mode="In" />
+          <Parameter Name="password" Type="nvarchar" Mode="In" />
+          <Parameter Name="admin" Type="bit" Mode="In" />
+          <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
+        </Function>
         <EntityContainer Name="BibliotecaModelStoreContainer" />
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -35,7 +51,7 @@
             <Parameter Name="nombre" Mode="In" Type="String" />
             <Parameter Name="apellidos" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="up_Usuarios_INS_InsertarUsuario" ReturnType="Collection(BibliotecaModel.InsertarUsuarioDTO)">
+          <FunctionImport Name="up_Usuarios_INS_InsertarUsuario" ReturnType="Collection(Int32)">
             <Parameter Name="dni" Mode="In" Type="String" />
             <Parameter Name="nombre" Mode="In" Type="String" />
             <Parameter Name="apellidos" Mode="In" Type="String" />
@@ -45,6 +61,22 @@
             <Parameter Name="usuario" Mode="In" Type="String" />
             <Parameter Name="password" Mode="In" Type="String" />
             <Parameter Name="admin" Mode="In" Type="Boolean" />
+            <Parameter Name="Estado" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="up_Usuarios_UPD_ActualizarUsuario" ReturnType="Collection(Int32)">
+            <Parameter Name="dni" Mode="In" Type="String" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="apellidos" Mode="In" Type="String" />
+            <Parameter Name="direccion" Mode="In" Type="String" />
+            <Parameter Name="telefono" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="admin" Mode="In" Type="Boolean" />
+            <Parameter Name="Estado" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="up_Usuarios_DEL_BorrarUsuario" ReturnType="Collection(Int32)">
+            <Parameter Name="dni" Mode="In" Type="String" />
             <Parameter Name="Estado" Mode="InOut" Type="String" />
           </FunctionImport>
         </EntityContainer>
@@ -57,9 +89,6 @@
           <Property Type="String" Name="email" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="usuario" Nullable="true" MaxLength="50" />
           <Property Type="Boolean" Name="admin" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="InsertarUsuarioDTO">
-          <Property Type="Int32" Name="Column1" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -81,13 +110,10 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="up_Usuarios_INS_InsertarUsuario" FunctionName="BibliotecaModel.Store.up_Usuarios_INS_InsertarUsuario">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="BibliotecaModel.InsertarUsuarioDTO">
-                <ScalarProperty Name="Column1" ColumnName="Column1" />
-              </ComplexTypeMapping>
-            </ResultMapping>
+          <FunctionImportMapping FunctionImportName="up_Usuarios_INS_InsertarUsuario" FunctionName="BibliotecaModel.Store.up_Usuarios_INS_InsertarUsuario" >
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="up_Usuarios_UPD_ActualizarUsuario" FunctionName="BibliotecaModel.Store.up_Usuarios_UPD_ActualizarUsuario" />
+          <FunctionImportMapping FunctionImportName="up_Usuarios_DEL_BorrarUsuario" FunctionName="BibliotecaModel.Store.up_Usuarios_DEL_BorrarUsuario" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

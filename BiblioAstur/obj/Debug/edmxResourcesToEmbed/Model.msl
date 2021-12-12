@@ -15,12 +15,8 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="up_Usuarios_INS_InsertarUsuario" FunctionName="BibliotecaModel.Store.up_Usuarios_INS_InsertarUsuario">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="BibliotecaModel.InsertarUsuarioDTO">
-          <ScalarProperty Name="Column1" ColumnName="Column1" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="up_Usuarios_INS_InsertarUsuario" FunctionName="BibliotecaModel.Store.up_Usuarios_INS_InsertarUsuario" />
+    <FunctionImportMapping FunctionImportName="up_Usuarios_UPD_ActualizarUsuario" FunctionName="BibliotecaModel.Store.up_Usuarios_UPD_ActualizarUsuario" />
+    <FunctionImportMapping FunctionImportName="up_Usuarios_DEL_BorrarUsuario" FunctionName="BibliotecaModel.Store.up_Usuarios_DEL_BorrarUsuario" />
   </EntityContainerMapping>
 </Mapping>

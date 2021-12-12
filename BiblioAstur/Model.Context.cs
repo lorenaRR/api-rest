@@ -63,7 +63,7 @@ public partial class BibliotecaEntities : DbContext
     }
 
 
-    public virtual ObjectResult<InsertarUsuarioDTO> up_Usuarios_INS_InsertarUsuario(string dni, string nombre, string apellidos, string direccion, string telefono, string email, string usuario, string password, Nullable<bool> admin, ObjectParameter estado)
+    public virtual ObjectResult<Nullable<int>> up_Usuarios_INS_InsertarUsuario(string dni, string nombre, string apellidos, string direccion, string telefono, string email, string usuario, string password, Nullable<bool> admin, ObjectParameter estado)
     {
 
         var dniParameter = dni != null ?
@@ -111,7 +111,71 @@ public partial class BibliotecaEntities : DbContext
             new ObjectParameter("admin", typeof(bool));
 
 
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<InsertarUsuarioDTO>("up_Usuarios_INS_InsertarUsuario", dniParameter, nombreParameter, apellidosParameter, direccionParameter, telefonoParameter, emailParameter, usuarioParameter, passwordParameter, adminParameter, estado);
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("up_Usuarios_INS_InsertarUsuario", dniParameter, nombreParameter, apellidosParameter, direccionParameter, telefonoParameter, emailParameter, usuarioParameter, passwordParameter, adminParameter, estado);
+    }
+
+
+    public virtual ObjectResult<Nullable<int>> up_Usuarios_UPD_ActualizarUsuario(string dni, string nombre, string apellidos, string direccion, string telefono, string email, string usuario, string password, Nullable<bool> admin, ObjectParameter estado)
+    {
+
+        var dniParameter = dni != null ?
+            new ObjectParameter("dni", dni) :
+            new ObjectParameter("dni", typeof(string));
+
+
+        var nombreParameter = nombre != null ?
+            new ObjectParameter("nombre", nombre) :
+            new ObjectParameter("nombre", typeof(string));
+
+
+        var apellidosParameter = apellidos != null ?
+            new ObjectParameter("apellidos", apellidos) :
+            new ObjectParameter("apellidos", typeof(string));
+
+
+        var direccionParameter = direccion != null ?
+            new ObjectParameter("direccion", direccion) :
+            new ObjectParameter("direccion", typeof(string));
+
+
+        var telefonoParameter = telefono != null ?
+            new ObjectParameter("telefono", telefono) :
+            new ObjectParameter("telefono", typeof(string));
+
+
+        var emailParameter = email != null ?
+            new ObjectParameter("email", email) :
+            new ObjectParameter("email", typeof(string));
+
+
+        var usuarioParameter = usuario != null ?
+            new ObjectParameter("usuario", usuario) :
+            new ObjectParameter("usuario", typeof(string));
+
+
+        var passwordParameter = password != null ?
+            new ObjectParameter("password", password) :
+            new ObjectParameter("password", typeof(string));
+
+
+        var adminParameter = admin.HasValue ?
+            new ObjectParameter("admin", admin) :
+            new ObjectParameter("admin", typeof(bool));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("up_Usuarios_UPD_ActualizarUsuario", dniParameter, nombreParameter, apellidosParameter, direccionParameter, telefonoParameter, emailParameter, usuarioParameter, passwordParameter, adminParameter, estado);
+    }
+
+
+    public virtual ObjectResult<Nullable<int>> up_Usuarios_DEL_BorrarUsuario(string dni, ObjectParameter estado)
+    {
+
+        var dniParameter = dni != null ?
+            new ObjectParameter("dni", dni) :
+            new ObjectParameter("dni", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("up_Usuarios_DEL_BorrarUsuario", dniParameter, estado);
     }
 
 }
