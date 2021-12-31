@@ -179,6 +179,52 @@ public partial class BibliotecaEntities : DbContext
     }
 
 
+    public virtual ObjectResult<SeleccionarCategoriasDTO> up_Categorias_SEL_SeleccionarCategorias()
+    {
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SeleccionarCategoriasDTO>("up_Categorias_SEL_SeleccionarCategorias");
+    }
+
+
+    public virtual ObjectResult<Nullable<int>> up_Usuarios_UPD_ActualizarPassword(string dni, string pass, string estado)
+    {
+
+        var dniParameter = dni != null ?
+            new ObjectParameter("dni", dni) :
+            new ObjectParameter("dni", typeof(string));
+
+
+        var passParameter = pass != null ?
+            new ObjectParameter("pass", pass) :
+            new ObjectParameter("pass", typeof(string));
+
+
+        var estadoParameter = estado != null ?
+            new ObjectParameter("Estado", estado) :
+            new ObjectParameter("Estado", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("up_Usuarios_UPD_ActualizarPassword", dniParameter, passParameter, estadoParameter);
+    }
+
+
+    public virtual ObjectResult<LoginsDTO> up_Usuarios_SEL_Logins(string user, string pass)
+    {
+
+        var userParameter = user != null ?
+            new ObjectParameter("user", user) :
+            new ObjectParameter("user", typeof(string));
+
+
+        var passParameter = pass != null ?
+            new ObjectParameter("pass", pass) :
+            new ObjectParameter("pass", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<LoginsDTO>("up_Usuarios_SEL_Logins", userParameter, passParameter);
+    }
+
+
     public virtual ObjectResult<SeleccionarLibrosDTO> up_Libros_SEL_SeleccionarLibros(string isbn, string titulo, string subtitulo, string editorial, string autor)
     {
 
@@ -208,6 +254,68 @@ public partial class BibliotecaEntities : DbContext
 
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SeleccionarLibrosDTO>("up_Libros_SEL_SeleccionarLibros", isbnParameter, tituloParameter, subtituloParameter, editorialParameter, autorParameter);
+    }
+
+
+    public virtual ObjectResult<Nullable<int>> up_Libros_INS_InsertarLibro(string isbn, string titulo, string subtitulo, Nullable<System.DateTime> fechaPublicacion, string descripcion, Nullable<int> nPaginas, string imagen, string editorial, Nullable<int> stock, Nullable<bool> reservado, Nullable<bool> prestado, ObjectParameter estado)
+    {
+
+        var isbnParameter = isbn != null ?
+            new ObjectParameter("isbn", isbn) :
+            new ObjectParameter("isbn", typeof(string));
+
+
+        var tituloParameter = titulo != null ?
+            new ObjectParameter("titulo", titulo) :
+            new ObjectParameter("titulo", typeof(string));
+
+
+        var subtituloParameter = subtitulo != null ?
+            new ObjectParameter("subtitulo", subtitulo) :
+            new ObjectParameter("subtitulo", typeof(string));
+
+
+        var fechaPublicacionParameter = fechaPublicacion.HasValue ?
+            new ObjectParameter("fechaPublicacion", fechaPublicacion) :
+            new ObjectParameter("fechaPublicacion", typeof(System.DateTime));
+
+
+        var descripcionParameter = descripcion != null ?
+            new ObjectParameter("descripcion", descripcion) :
+            new ObjectParameter("descripcion", typeof(string));
+
+
+        var nPaginasParameter = nPaginas.HasValue ?
+            new ObjectParameter("nPaginas", nPaginas) :
+            new ObjectParameter("nPaginas", typeof(int));
+
+
+        var imagenParameter = imagen != null ?
+            new ObjectParameter("imagen", imagen) :
+            new ObjectParameter("imagen", typeof(string));
+
+
+        var editorialParameter = editorial != null ?
+            new ObjectParameter("editorial", editorial) :
+            new ObjectParameter("editorial", typeof(string));
+
+
+        var stockParameter = stock.HasValue ?
+            new ObjectParameter("stock", stock) :
+            new ObjectParameter("stock", typeof(int));
+
+
+        var reservadoParameter = reservado.HasValue ?
+            new ObjectParameter("reservado", reservado) :
+            new ObjectParameter("reservado", typeof(bool));
+
+
+        var prestadoParameter = prestado.HasValue ?
+            new ObjectParameter("prestado", prestado) :
+            new ObjectParameter("prestado", typeof(bool));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("up_Libros_INS_InsertarLibro", isbnParameter, tituloParameter, subtituloParameter, fechaPublicacionParameter, descripcionParameter, nPaginasParameter, imagenParameter, editorialParameter, stockParameter, reservadoParameter, prestadoParameter, estado);
     }
 
 }

@@ -18,15 +18,38 @@
     <FunctionImportMapping FunctionImportName="up_Usuarios_INS_InsertarUsuario" FunctionName="BibliotecaModel.Store.up_Usuarios_INS_InsertarUsuario" />
     <FunctionImportMapping FunctionImportName="up_Usuarios_UPD_ActualizarUsuario" FunctionName="BibliotecaModel.Store.up_Usuarios_UPD_ActualizarUsuario" />
     <FunctionImportMapping FunctionImportName="up_Usuarios_DEL_BorrarUsuario" FunctionName="BibliotecaModel.Store.up_Usuarios_DEL_BorrarUsuario" />
+    <FunctionImportMapping FunctionImportName="up_Categorias_SEL_SeleccionarCategorias" FunctionName="BibliotecaModel.Store.up_Categorias_SEL_SeleccionarCategorias">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BibliotecaModel.SeleccionarCategoriasDTO">
+          <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
+          <ScalarProperty Name="categoria" ColumnName="categoria" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="up_Usuarios_UPD_ActualizarPassword" FunctionName="BibliotecaModel.Store.up_Usuarios_UPD_ActualizarPassword" />
+    <FunctionImportMapping FunctionImportName="up_Usuarios_SEL_Logins" FunctionName="BibliotecaModel.Store.up_Usuarios_SEL_Logins">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BibliotecaModel.LoginsDTO">
+          <ScalarProperty Name="dni" ColumnName="dni" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="admin" ColumnName="admin" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="up_Libros_SEL_SeleccionarLibros" FunctionName="BibliotecaModel.Store.up_Libros_SEL_SeleccionarLibros">
       <ResultMapping>
         <ComplexTypeMapping TypeName="BibliotecaModel.SeleccionarLibrosDTO">
-          <ScalarProperty Name="id_libros" ColumnName="id_libros" />
           <ScalarProperty Name="isbn" ColumnName="isbn" />
           <ScalarProperty Name="titulo" ColumnName="titulo" />
           <ScalarProperty Name="subtitulo" ColumnName="subtitulo" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />
-          <ScalarProperty Name="apelldios" ColumnName="apelldios" />
+          <ScalarProperty Name="apellidos" ColumnName="apellidos" />
           <ScalarProperty Name="categoria" ColumnName="categoria" />
           <ScalarProperty Name="fechaPublicacion" ColumnName="fechaPublicacion" />
           <ScalarProperty Name="editorial" ColumnName="editorial" />
@@ -37,5 +60,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="up_Libros_INS_InsertarLibro" FunctionName="BibliotecaModel.Store.up_Libros_INS_InsertarLibro" />
   </EntityContainerMapping>
 </Mapping>

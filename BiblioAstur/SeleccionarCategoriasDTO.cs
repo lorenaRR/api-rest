@@ -14,32 +14,12 @@ namespace BiblioAstur
 
 using System;
     
-public partial class SeleccionarLibrosDTO
+public partial class SeleccionarCategoriasDTO
 {
 
-    public string isbn { get; set; }
-
-    public string titulo { get; set; }
-
-    public string subtitulo { get; set; }
-
-    public string nombre { get; set; }
-
-    public string apellidos { get; set; }
+    public int id_categoria { get; set; }
 
     public string categoria { get; set; }
-
-    public Nullable<System.DateTime> fechaPublicacion { get; set; }
-
-    public string editorial { get; set; }
-
-    public string descripcion { get; set; }
-
-    public Nullable<int> nPaginas { get; set; }
-
-    public string imagen { get; set; }
-
-    public Nullable<int> stock { get; set; }
 
 }
 
