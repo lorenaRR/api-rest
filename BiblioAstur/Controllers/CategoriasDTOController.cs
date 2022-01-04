@@ -10,13 +10,14 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using BiblioAstur;
+
 namespace BiblioAstur.Controllers
 {
 
     public class CategoriasDTOController : ApiController
     {
         private BibliotecaEntities db = new BibliotecaEntities();
-        // GET: api/SeleccionarCategorias
+        // GET: api/Categorias/SeleccionarCategorias
         [ResponseType(typeof(SeleccionarCategoriasDTO))]
         [HttpGet]
         [Route("api/Categorias/SeleccionarCategorias")]

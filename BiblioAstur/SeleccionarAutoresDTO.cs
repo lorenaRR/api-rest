@@ -14,12 +14,14 @@ namespace BiblioAstur
 
 using System;
     
-public partial class SeleccionarCategoriasDTO
+public partial class SeleccionarAutoresDTO
 {
 
-    public System.Guid id_categoria { get; set; }
+    public System.Guid id_autor { get; set; }
 
-    public string categoria { get; set; }
+    public string nombre { get; set; }
+
+    public string apellidos { get; set; }
 
 }
 

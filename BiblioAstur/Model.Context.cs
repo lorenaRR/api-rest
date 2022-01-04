@@ -318,6 +318,69 @@ public partial class BibliotecaEntities : DbContext
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("up_Libros_INS_InsertarLibro", isbnParameter, tituloParameter, subtituloParameter, fechaPublicacionParameter, descripcionParameter, nPaginasParameter, imagenParameter, editorialParameter, stockParameter, reservadoParameter, prestadoParameter, estado);
     }
 
+
+    public virtual ObjectResult<Nullable<int>> up_Autores_Libros_INS_InsertarAutorLibro(Nullable<System.Guid> id_autor, string isbn, ObjectParameter estado)
+    {
+
+        var id_autorParameter = id_autor.HasValue ?
+            new ObjectParameter("id_autor", id_autor) :
+            new ObjectParameter("id_autor", typeof(System.Guid));
+
+
+        var isbnParameter = isbn != null ?
+            new ObjectParameter("isbn", isbn) :
+            new ObjectParameter("isbn", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("up_Autores_Libros_INS_InsertarAutorLibro", id_autorParameter, isbnParameter, estado);
+    }
+
+
+    public virtual ObjectResult<Nullable<int>> up_Autores_INS_InsertarAutor(Nullable<System.Guid> id, string nombre, string apellidos, ObjectParameter estado)
+    {
+
+        var idParameter = id.HasValue ?
+            new ObjectParameter("id", id) :
+            new ObjectParameter("id", typeof(System.Guid));
+
+
+        var nombreParameter = nombre != null ?
+            new ObjectParameter("nombre", nombre) :
+            new ObjectParameter("nombre", typeof(string));
+
+
+        var apellidosParameter = apellidos != null ?
+            new ObjectParameter("apellidos", apellidos) :
+            new ObjectParameter("apellidos", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("up_Autores_INS_InsertarAutor", idParameter, nombreParameter, apellidosParameter, estado);
+    }
+
+
+    public virtual ObjectResult<Nullable<int>> up_Categorias_Libros_INS_InsertarCategoriaLibro(Nullable<System.Guid> id_categoria, string isbn, ObjectParameter estado)
+    {
+
+        var id_categoriaParameter = id_categoria.HasValue ?
+            new ObjectParameter("id_categoria", id_categoria) :
+            new ObjectParameter("id_categoria", typeof(System.Guid));
+
+
+        var isbnParameter = isbn != null ?
+            new ObjectParameter("isbn", isbn) :
+            new ObjectParameter("isbn", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("up_Categorias_Libros_INS_InsertarCategoriaLibro", id_categoriaParameter, isbnParameter, estado);
+    }
+
+
+    public virtual ObjectResult<SeleccionarAutoresDTO> up_Autores_SEL_SeleccionarAutores()
+    {
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SeleccionarAutoresDTO>("up_Autores_SEL_SeleccionarAutores");
+    }
+
 }
 
 }

@@ -36,24 +36,5 @@ namespace BiblioAstur.Controllers
             return Ok(lista);
 
         }
-
-        /* // PUT api/Usuarios/ActualizarLogin
-         [HttpPut]
-         [ResponseType(typeof(Int32))]
-         [Route("api/Usuarios/ActualizarPassword")]
-         public IHttpActionResult ActualizarPassword([FromBody] )
-         {
-             ResultadoDTO respuesta = new ResultadoDTO();
-             ObjectParameter estadoObjectParameter = new ObjectParameter("estado", typeof(String));
-             respuesta.Resultado = Convert.ToBoolean(db.up_Usuarios_UPD_ActualizarUsuario(usuario.dni, usuario.nombre, usuario.apellidos, usuario.direccion, usuario.telefono, usuario.email, usuario.usuario, usuario.password, usuario.admin, estadoObjectParameter).FirstOrDefault().Value);
-             respuesta.Estado = estadoObjectParameter.Value.ToString();
-             return Ok(respuesta);
-         }*/
-
-        public class ResultadoDTO
-        {
-            public bool Resultado { get; set; }
-            public string Estado { get; set; }
-        }
     }
 }

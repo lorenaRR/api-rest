@@ -5,6 +5,23 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="BibliotecaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="up_Autores_INS_InsertarAutor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="apellidos" Type="nvarchar" Mode="In" />
+          <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="up_Autores_Libros_INS_InsertarAutorLibro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_autor" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="isbn" Type="nvarchar" Mode="In" />
+          <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="up_Autores_SEL_SeleccionarAutores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="up_Categorias_Libros_INS_InsertarCategoriaLibro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_categoria" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="isbn" Type="nvarchar" Mode="In" />
+          <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
+        </Function>
         <Function Name="up_Categorias_SEL_SeleccionarCategorias" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="up_Libros_INS_InsertarLibro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="isbn" Type="nvarchar" Mode="In" />
@@ -52,11 +69,6 @@
           <Parameter Name="admin" Type="tinyint" Mode="In" />
           <Parameter Name="nombre" Type="varchar" Mode="In" />
           <Parameter Name="apellidos" Type="varchar" Mode="In" />
-        </Function>
-        <Function Name="up_Usuarios_UPD_ActualizarPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="dni" Type="varchar" Mode="In" />
-          <Parameter Name="pass" Type="varchar" Mode="In" />
-          <Parameter Name="Estado" Type="varchar" Mode="In" />
         </Function>
         <Function Name="up_Usuarios_UPD_ActualizarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="dni" Type="nvarchar" Mode="In" />
@@ -141,6 +153,23 @@
             <Parameter Name="prestado" Mode="In" Type="Boolean" />
             <Parameter Name="Estado" Mode="InOut" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="up_Autores_Libros_INS_InsertarAutorLibro" ReturnType="Collection(Int32)">
+            <Parameter Name="id_autor" Mode="In" Type="Guid" />
+            <Parameter Name="isbn" Mode="In" Type="String" />
+            <Parameter Name="Estado" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="up_Autores_INS_InsertarAutor" ReturnType="Collection(Int32)">
+            <Parameter Name="id" Mode="In" Type="Guid" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="apellidos" Mode="In" Type="String" />
+            <Parameter Name="Estado" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="up_Categorias_Libros_INS_InsertarCategoriaLibro" ReturnType="Collection(Int32)">
+            <Parameter Name="id_categoria" Mode="In" Type="Guid" />
+            <Parameter Name="isbn" Mode="In" Type="String" />
+            <Parameter Name="Estado" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="up_Autores_SEL_SeleccionarAutores" ReturnType="Collection(BibliotecaModel.SeleccionarAutoresDTO)" />
         </EntityContainer>
         <ComplexType Name="SeleccionarUsuariosDTO">
           <Property Type="String" Name="dni" Nullable="false" MaxLength="50" />
@@ -151,10 +180,6 @@
           <Property Type="String" Name="email" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="usuario" Nullable="true" MaxLength="50" />
           <Property Type="Boolean" Name="admin" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="SeleccionarCategoriasDTO">
-          <Property Type="Int32" Name="id_categoria" Nullable="false" />
-          <Property Type="String" Name="categoria" Nullable="true" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="LoginsDTO">
           <Property Type="String" Name="dni" Nullable="false" MaxLength="50" />
@@ -180,6 +205,15 @@
           <Property Type="Int32" Name="nPaginas" Nullable="true" />
           <Property Type="String" Name="imagen" Nullable="true" MaxLength="150" />
           <Property Type="Int32" Name="stock" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SeleccionarCategoriasDTO">
+          <Property Type="Guid" Name="id_categoria" Nullable="false" />
+          <Property Type="String" Name="categoria" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SeleccionarAutoresDTO">
+          <Property Type="Guid" Name="id_autor" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="apellidos" Nullable="true" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -213,7 +247,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="up_Usuarios_UPD_ActualizarPassword" FunctionName="BibliotecaModel.Store.up_Usuarios_UPD_ActualizarPassword" />
           <FunctionImportMapping FunctionImportName="up_Usuarios_SEL_Logins" FunctionName="BibliotecaModel.Store.up_Usuarios_SEL_Logins">
             <ResultMapping>
               <ComplexTypeMapping TypeName="BibliotecaModel.LoginsDTO">
@@ -248,6 +281,18 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="up_Libros_INS_InsertarLibro" FunctionName="BibliotecaModel.Store.up_Libros_INS_InsertarLibro" />
+          <FunctionImportMapping FunctionImportName="up_Autores_Libros_INS_InsertarAutorLibro" FunctionName="BibliotecaModel.Store.up_Autores_Libros_INS_InsertarAutorLibro" />
+          <FunctionImportMapping FunctionImportName="up_Autores_INS_InsertarAutor" FunctionName="BibliotecaModel.Store.up_Autores_INS_InsertarAutor" />
+          <FunctionImportMapping FunctionImportName="up_Categorias_Libros_INS_InsertarCategoriaLibro" FunctionName="BibliotecaModel.Store.up_Categorias_Libros_INS_InsertarCategoriaLibro" />
+          <FunctionImportMapping FunctionImportName="up_Autores_SEL_SeleccionarAutores" FunctionName="BibliotecaModel.Store.up_Autores_SEL_SeleccionarAutores">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BibliotecaModel.SeleccionarAutoresDTO">
+                <ScalarProperty Name="id_autor" ColumnName="id_autor" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

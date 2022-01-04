@@ -66,6 +66,23 @@
       <Parameter Name="prestado" Mode="In" Type="Boolean" />
       <Parameter Name="Estado" Mode="InOut" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="up_Autores_Libros_INS_InsertarAutorLibro" ReturnType="Collection(Int32)">
+      <Parameter Name="id_autor" Mode="In" Type="Guid" />
+      <Parameter Name="isbn" Mode="In" Type="String" />
+      <Parameter Name="Estado" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="up_Autores_INS_InsertarAutor" ReturnType="Collection(Int32)">
+      <Parameter Name="id" Mode="In" Type="Guid" />
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="apellidos" Mode="In" Type="String" />
+      <Parameter Name="Estado" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="up_Categorias_Libros_INS_InsertarCategoriaLibro" ReturnType="Collection(Int32)">
+      <Parameter Name="id_categoria" Mode="In" Type="Guid" />
+      <Parameter Name="isbn" Mode="In" Type="String" />
+      <Parameter Name="Estado" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="up_Autores_SEL_SeleccionarAutores" ReturnType="Collection(BibliotecaModel.SeleccionarAutoresDTO)" />
   </EntityContainer>
   <ComplexType Name="SeleccionarUsuariosDTO">
     <Property Type="String" Name="dni" Nullable="false" MaxLength="50" />
@@ -76,10 +93,6 @@
     <Property Type="String" Name="email" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="usuario" Nullable="true" MaxLength="50" />
     <Property Type="Boolean" Name="admin" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="SeleccionarCategoriasDTO">
-    <Property Type="Int32" Name="id_categoria" Nullable="false" />
-    <Property Type="String" Name="categoria" Nullable="true" MaxLength="50" />
   </ComplexType>
   <ComplexType Name="LoginsDTO">
     <Property Type="String" Name="dni" Nullable="false" MaxLength="50" />
@@ -105,5 +118,14 @@
     <Property Type="Int32" Name="nPaginas" Nullable="true" />
     <Property Type="String" Name="imagen" Nullable="true" MaxLength="150" />
     <Property Type="Int32" Name="stock" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SeleccionarCategoriasDTO">
+    <Property Type="Guid" Name="id_categoria" Nullable="false" />
+    <Property Type="String" Name="categoria" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="SeleccionarAutoresDTO">
+    <Property Type="Guid" Name="id_autor" Nullable="false" />
+    <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="apellidos" Nullable="true" MaxLength="50" />
   </ComplexType>
 </Schema>

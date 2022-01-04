@@ -13,12 +13,27 @@ using BiblioAstur;
 
 namespace BiblioAstur.Controllers
 {
-    
+
     public class LibrosDTOController : ApiController
     {
         private BibliotecaEntities db = new BibliotecaEntities();
 
-        // GET: api/SeleccionarUsuariosDTO/5
+        public class Libros
+        {
+            public string isbn;
+            public string titulo;
+            public string subtitulo;
+            public DateTime fechaPublicacion;
+            public string descripcion;
+            public int nPaginas;
+            public string imagen;
+            public string editorial;
+            public int stock;
+            public bool reservado;
+            public bool prestado;
+        }
+
+        // GET: api/SeleccionarLibros
         [ResponseType(typeof(SeleccionarLibrosDTO))]
         [HttpGet]
         [Route("api/Libros/SeleccionarLibros")]
@@ -68,6 +83,42 @@ namespace BiblioAstur.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+
+
+        // PUT api/Usuarios/ActualizarLibros
+        /*[HttpPut]
+        [ResponseType(typeof(Libros))]
+        [Route("api/Libros/ActualizarLibros")]
+        public IHttpActionResult ActualizarLibros([FromBody] Libros libro)
+        {
+            ResultadoDTO respuesta = new ResultadoDTO();
+            ObjectParameter estadoObjectParameter = new ObjectParameter("estado", typeof(String));
+            respuesta.Resultado = Convert.ToBoolean(db.up_Usuarios_UPD_ActualizarLibro(, estadoObjectParameter).FirstOrDefault().Value);
+            respuesta.Estado = estadoObjectParameter.Value.ToString();
+            return Ok(respuesta);
+        }*/
+
+        // POST api/Libros/InsertarLibros
+        [HttpPost]
+        [ResponseType(typeof(Libros))]
+        [Route("api/Libros/InsertarLibros")]
+        public IHttpActionResult InsertarLibros([FromBody] Libros libro)
+        {
+            Console.Write(libro);
+            ResultadoDTO respuesta = new ResultadoDTO();
+            ObjectParameter estadoObjectParameter = new ObjectParameter("estado", typeof(String));
+            respuesta.Resultado = Convert.ToBoolean(db.up_Libros_INS_InsertarLibro(libro.isbn, libro.titulo, libro.subtitulo, libro.fechaPublicacion, libro.descripcion, libro.nPaginas, libro.imagen, libro.editorial, libro.stock, libro.reservado, libro.prestado, estadoObjectParameter).FirstOrDefault().Value);
+            respuesta.Estado = estadoObjectParameter.Value.ToString();
+            return Ok(respuesta);
+        }
+
+
+        public class ResultadoDTO
+        {
+            public bool Resultado { get; set; }
+            public string Estado { get; set; }
         }
     }
 }
