@@ -336,13 +336,8 @@ public partial class BibliotecaEntities : DbContext
     }
 
 
-    public virtual ObjectResult<Nullable<int>> up_Autores_INS_InsertarAutor(Nullable<System.Guid> id, string nombre, string apellidos, ObjectParameter estado)
+    public virtual ObjectResult<Nullable<int>> up_Autores_INS_InsertarAutor(string nombre, string apellidos, ObjectParameter estado)
     {
-
-        var idParameter = id.HasValue ?
-            new ObjectParameter("id", id) :
-            new ObjectParameter("id", typeof(System.Guid));
-
 
         var nombreParameter = nombre != null ?
             new ObjectParameter("nombre", nombre) :
@@ -354,7 +349,7 @@ public partial class BibliotecaEntities : DbContext
             new ObjectParameter("apellidos", typeof(string));
 
 
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("up_Autores_INS_InsertarAutor", idParameter, nombreParameter, apellidosParameter, estado);
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("up_Autores_INS_InsertarAutor", nombreParameter, apellidosParameter, estado);
     }
 
 

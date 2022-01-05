@@ -24,6 +24,12 @@ namespace BiblioAstur.Controllers
             public string apellidos;
         }
 
+        public class AutoresLibro
+        {
+            public Guid id;
+            public Guid id_autor;
+            public string isbn;
+        }
 
         // GET: api/Autores/SeleccionarAutores
         [ResponseType(typeof(SeleccionarAutoresDTO))]
@@ -62,17 +68,35 @@ namespace BiblioAstur.Controllers
         // POST api/Usuarios/InsertarAutores
         [HttpPost]
         [ResponseType(typeof(Autores))]
-        [Route("api/Usuarios/InsertarAutores")]
-        public IHttpActionResult InsertarUsuarios([FromBody] Autores autor)
+        [Route("api/Autores/InsertarAutores")]
+        public IHttpActionResult InsertarAutores([FromBody] Autores autor)
         {
             Console.Write(autor);
             ResultadoDTO respuesta = new ResultadoDTO();
             ObjectParameter estadoObjectParameter = new ObjectParameter("estado", typeof(String));
-            respuesta.Resultado = Convert.ToBoolean(db.up_Autores_INS_InsertarAutor(autor.id, autor.nombre, autor.apellidos, estadoObjectParameter).FirstOrDefault().Value);
+            respuesta.Resultado = Convert.ToBoolean(db.up_Autores_INS_InsertarAutor(autor.nombre, autor.apellidos, estadoObjectParameter).FirstOrDefault().Value);
             respuesta.Estado = estadoObjectParameter.Value.ToString();
             return Ok(respuesta);
         }
+        
 
+
+
+
+        // POST api/Usuarios/InsertarAutoresLibro
+        [HttpPost]
+        [ResponseType(typeof(AutoresLibro))]
+        [Route("api/Autores/InsertarAutoresLibro")]
+        public IHttpActionResult InsertarAutoresLibro([FromBody] AutoresLibro autor_libro)
+        {
+            Console.Write(autor_libro);
+
+            ResultadoDTO respuesta = new ResultadoDTO();
+            ObjectParameter estadoObjectParameter = new ObjectParameter("estado", typeof(String));
+            respuesta.Resultado = Convert.ToBoolean(db.up_Autores_Libros_INS_InsertarAutorLibro(autor_libro.id_autor, autor_libro.isbn, estadoObjectParameter).FirstOrDefault().Value);
+            respuesta.Estado = estadoObjectParameter.Value.ToString();
+            return Ok(respuesta);
+        }
 
         public class ResultadoDTO
         {

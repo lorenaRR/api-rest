@@ -17,6 +17,15 @@ namespace BiblioAstur.Controllers
     public class CategoriasDTOController : ApiController
     {
         private BibliotecaEntities db = new BibliotecaEntities();
+
+        public class CategoriasLibro
+        {
+            public Guid id;
+            public Guid id_categoria;
+            public string isbn;
+        }
+
+
         // GET: api/Categorias/SeleccionarCategorias
         [ResponseType(typeof(SeleccionarCategoriasDTO))]
         [HttpGet]
@@ -37,6 +46,28 @@ namespace BiblioAstur.Controllers
 
             return Ok(lista);
 
+        }
+
+        // POST api/Categorias/InsertarCategoriasLibro
+        [HttpPost]
+        [ResponseType(typeof(CategoriasLibro))]
+        [Route("api/Categorias/InsertarCategoriasLibro")]
+        public IHttpActionResult InsertarCategoriasLibro([FromBody] CategoriasLibro categoria_libro)
+        {
+            Console.Write(categoria_libro);
+
+            ResultadoDTO respuesta = new ResultadoDTO();
+            ObjectParameter estadoObjectParameter = new ObjectParameter("estado", typeof(String));
+            respuesta.Resultado = Convert.ToBoolean(db.up_Categorias_Libros_INS_InsertarCategoriaLibro(categoria_libro.id_categoria, categoria_libro.isbn, estadoObjectParameter).FirstOrDefault().Value);
+            respuesta.Estado = estadoObjectParameter.Value.ToString();
+            return Ok(respuesta);
+        }
+
+
+        public class ResultadoDTO
+        {
+            public bool Resultado { get; set; }
+            public string Estado { get; set; }
         }
     }
 }

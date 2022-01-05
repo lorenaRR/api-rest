@@ -6,7 +6,6 @@
     <edmx:StorageModels>
     <Schema Namespace="BibliotecaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <Function Name="up_Autores_INS_InsertarAutor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="nombre" Type="nvarchar" Mode="In" />
           <Parameter Name="apellidos" Type="nvarchar" Mode="In" />
           <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
@@ -159,7 +158,6 @@
             <Parameter Name="Estado" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="up_Autores_INS_InsertarAutor" ReturnType="Collection(Int32)">
-            <Parameter Name="id" Mode="In" Type="Guid" />
             <Parameter Name="nombre" Mode="In" Type="String" />
             <Parameter Name="apellidos" Mode="In" Type="String" />
             <Parameter Name="Estado" Mode="InOut" Type="String" />
