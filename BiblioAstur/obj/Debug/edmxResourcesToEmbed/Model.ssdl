@@ -10,7 +10,10 @@
     <Parameter Name="isbn" Type="nvarchar" Mode="In" />
     <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
   </Function>
-  <Function Name="up_Autores_SEL_SeleccionarAutores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="up_Autores_SEL_SeleccionarAutores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nombre" Type="varchar" Mode="In" />
+    <Parameter Name="apellidos" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="up_Categorias_Libros_INS_InsertarCategoriaLibro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id_categoria" Type="uniqueidentifier" Mode="In" />
     <Parameter Name="isbn" Type="nvarchar" Mode="In" />

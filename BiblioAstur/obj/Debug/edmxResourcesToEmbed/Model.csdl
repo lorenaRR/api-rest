@@ -81,7 +81,10 @@
       <Parameter Name="isbn" Mode="In" Type="String" />
       <Parameter Name="Estado" Mode="InOut" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="up_Autores_SEL_SeleccionarAutores" ReturnType="Collection(BibliotecaModel.SeleccionarAutoresDTO)" />
+    <FunctionImport Name="up_Autores_SEL_SeleccionarAutores" ReturnType="Collection(BibliotecaModel.SeleccionarAutoresDTO)">
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="apellidos" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="SeleccionarUsuariosDTO">
     <Property Type="String" Name="dni" Nullable="false" MaxLength="50" />

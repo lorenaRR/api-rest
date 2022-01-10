@@ -15,7 +15,10 @@
           <Parameter Name="isbn" Type="nvarchar" Mode="In" />
           <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
         </Function>
-        <Function Name="up_Autores_SEL_SeleccionarAutores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="up_Autores_SEL_SeleccionarAutores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="apellidos" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="up_Categorias_Libros_INS_InsertarCategoriaLibro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_categoria" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="isbn" Type="nvarchar" Mode="In" />
@@ -167,7 +170,10 @@
             <Parameter Name="isbn" Mode="In" Type="String" />
             <Parameter Name="Estado" Mode="InOut" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="up_Autores_SEL_SeleccionarAutores" ReturnType="Collection(BibliotecaModel.SeleccionarAutoresDTO)" />
+          <FunctionImport Name="up_Autores_SEL_SeleccionarAutores" ReturnType="Collection(BibliotecaModel.SeleccionarAutoresDTO)">
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="apellidos" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="SeleccionarUsuariosDTO">
           <Property Type="String" Name="dni" Nullable="false" MaxLength="50" />

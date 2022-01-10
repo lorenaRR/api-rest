@@ -36,12 +36,22 @@ namespace BiblioAstur.Controllers
         [HttpGet]
         [Route("api/Autores/SeleccionarAutores")]
 
-        public IHttpActionResult SeleccionarAutores()
+        public IHttpActionResult SeleccionarAutores(string nombre, string apellidos)
 
         {
             List<SeleccionarAutoresDTO> lista = null;
 
-            lista = this.db.up_Autores_SEL_SeleccionarAutores().ToList();
+            if (nombre==null)
+            {
+                nombre = "";
+            }
+
+            if (apellidos == null)
+            {
+                apellidos = "";
+            }
+
+            lista = this.db.up_Autores_SEL_SeleccionarAutores(nombre,apellidos).ToList();
 
             if (lista.Count == 0)
             {

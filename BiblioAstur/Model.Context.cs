@@ -370,10 +370,20 @@ public partial class BibliotecaEntities : DbContext
     }
 
 
-    public virtual ObjectResult<SeleccionarAutoresDTO> up_Autores_SEL_SeleccionarAutores()
+    public virtual ObjectResult<SeleccionarAutoresDTO> up_Autores_SEL_SeleccionarAutores(string nombre, string apellidos)
     {
 
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SeleccionarAutoresDTO>("up_Autores_SEL_SeleccionarAutores");
+        var nombreParameter = nombre != null ?
+            new ObjectParameter("nombre", nombre) :
+            new ObjectParameter("nombre", typeof(string));
+
+
+        var apellidosParameter = apellidos != null ?
+            new ObjectParameter("apellidos", apellidos) :
+            new ObjectParameter("apellidos", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SeleccionarAutoresDTO>("up_Autores_SEL_SeleccionarAutores", nombreParameter, apellidosParameter);
     }
 
 }
