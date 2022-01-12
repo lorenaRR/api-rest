@@ -85,6 +85,10 @@
       <Parameter Name="nombre" Mode="In" Type="String" />
       <Parameter Name="apellidos" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="up_Categorias_INS_InsertarCategoria" ReturnType="Collection(Int32)">
+      <Parameter Name="categoria" Mode="In" Type="String" />
+      <Parameter Name="Estado" Mode="InOut" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="SeleccionarUsuariosDTO">
     <Property Type="String" Name="dni" Nullable="false" MaxLength="50" />

@@ -72,5 +72,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="up_Categorias_INS_InsertarCategoria" FunctionName="BibliotecaModel.Store.up_Categorias_INS_InsertarCategoria" />
   </EntityContainerMapping>
 </Mapping>

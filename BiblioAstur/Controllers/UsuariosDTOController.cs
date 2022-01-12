@@ -101,10 +101,10 @@ namespace BiblioAstur.Controllers
         }
 
         // DELETE api/Usuarios/BorrarUsuarios
-        [HttpGet]
+        [HttpDelete]
         [ResponseType(typeof(String))]
         [Route("api/Usuarios/BorrarUsuarios/{dni}")]
-        public IHttpActionResult BorrarUsuarios([FromBody] String dni)
+        public IHttpActionResult BorrarUsuarios(String dni)
         {
             Console.Write(dni);
             ResultadoDTO respuesta = new ResultadoDTO();

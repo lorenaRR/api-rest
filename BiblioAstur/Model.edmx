@@ -19,6 +19,10 @@
           <Parameter Name="nombre" Type="varchar" Mode="In" />
           <Parameter Name="apellidos" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="up_Categorias_INS_InsertarCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="categoria" Type="nvarchar" Mode="In" />
+          <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
+        </Function>
         <Function Name="up_Categorias_Libros_INS_InsertarCategoriaLibro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_categoria" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="isbn" Type="nvarchar" Mode="In" />
@@ -174,6 +178,10 @@
             <Parameter Name="nombre" Mode="In" Type="String" />
             <Parameter Name="apellidos" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="up_Categorias_INS_InsertarCategoria" ReturnType="Collection(Int32)">
+            <Parameter Name="categoria" Mode="In" Type="String" />
+            <Parameter Name="Estado" Mode="InOut" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="SeleccionarUsuariosDTO">
           <Property Type="String" Name="dni" Nullable="false" MaxLength="50" />
@@ -297,6 +305,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="up_Categorias_INS_InsertarCategoria" FunctionName="BibliotecaModel.Store.up_Categorias_INS_InsertarCategoria" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

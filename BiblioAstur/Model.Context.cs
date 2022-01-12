@@ -386,6 +386,18 @@ public partial class BibliotecaEntities : DbContext
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SeleccionarAutoresDTO>("up_Autores_SEL_SeleccionarAutores", nombreParameter, apellidosParameter);
     }
 
+
+    public virtual ObjectResult<Nullable<int>> up_Categorias_INS_InsertarCategoria(string categoria, ObjectParameter estado)
+    {
+
+        var categoriaParameter = categoria != null ?
+            new ObjectParameter("categoria", categoria) :
+            new ObjectParameter("categoria", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("up_Categorias_INS_InsertarCategoria", categoriaParameter, estado);
+    }
+
 }
 
 }
