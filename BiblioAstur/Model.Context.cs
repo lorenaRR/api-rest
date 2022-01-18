@@ -179,10 +179,20 @@ public partial class BibliotecaEntities : DbContext
     }
 
 
-    public virtual ObjectResult<SeleccionarCategoriasDTO> up_Categorias_SEL_SeleccionarCategorias()
+    public virtual ObjectResult<SeleccionarCategoriasDTO> up_Categorias_SEL_SeleccionarCategorias(string id_categoria, string categoria)
     {
 
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SeleccionarCategoriasDTO>("up_Categorias_SEL_SeleccionarCategorias");
+        var id_categoriaParameter = id_categoria != null ?
+            new ObjectParameter("id_categoria", id_categoria) :
+            new ObjectParameter("id_categoria", typeof(string));
+
+
+        var categoriaParameter = categoria != null ?
+            new ObjectParameter("categoria", categoria) :
+            new ObjectParameter("categoria", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SeleccionarCategoriasDTO>("up_Categorias_SEL_SeleccionarCategorias", id_categoriaParameter, categoriaParameter);
     }
 
 
@@ -370,8 +380,13 @@ public partial class BibliotecaEntities : DbContext
     }
 
 
-    public virtual ObjectResult<SeleccionarAutoresDTO> up_Autores_SEL_SeleccionarAutores(string nombre, string apellidos)
+    public virtual ObjectResult<SeleccionarAutoresDTO> up_Autores_SEL_SeleccionarAutores(string id_autor, string nombre, string apellidos)
     {
+
+        var id_autorParameter = id_autor != null ?
+            new ObjectParameter("id_autor", id_autor) :
+            new ObjectParameter("id_autor", typeof(string));
+
 
         var nombreParameter = nombre != null ?
             new ObjectParameter("nombre", nombre) :
@@ -383,7 +398,7 @@ public partial class BibliotecaEntities : DbContext
             new ObjectParameter("apellidos", typeof(string));
 
 
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SeleccionarAutoresDTO>("up_Autores_SEL_SeleccionarAutores", nombreParameter, apellidosParameter);
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SeleccionarAutoresDTO>("up_Autores_SEL_SeleccionarAutores", id_autorParameter, nombreParameter, apellidosParameter);
     }
 
 
@@ -396,6 +411,196 @@ public partial class BibliotecaEntities : DbContext
 
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("up_Categorias_INS_InsertarCategoria", categoriaParameter, estado);
+    }
+
+
+    public virtual ObjectResult<Nullable<int>> up_Libros_DEL_BorrarLibro(string isbn, ObjectParameter estado)
+    {
+
+        var isbnParameter = isbn != null ?
+            new ObjectParameter("isbn", isbn) :
+            new ObjectParameter("isbn", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("up_Libros_DEL_BorrarLibro", isbnParameter, estado);
+    }
+
+
+    public virtual ObjectResult<Nullable<int>> up_Reservas_INS_InsertarReserva(string isbn, string dni, Nullable<System.DateTime> fecha_reserva, ObjectParameter estado)
+    {
+
+        var isbnParameter = isbn != null ?
+            new ObjectParameter("isbn", isbn) :
+            new ObjectParameter("isbn", typeof(string));
+
+
+        var dniParameter = dni != null ?
+            new ObjectParameter("dni", dni) :
+            new ObjectParameter("dni", typeof(string));
+
+
+        var fecha_reservaParameter = fecha_reserva.HasValue ?
+            new ObjectParameter("fecha_reserva", fecha_reserva) :
+            new ObjectParameter("fecha_reserva", typeof(System.DateTime));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("up_Reservas_INS_InsertarReserva", isbnParameter, dniParameter, fecha_reservaParameter, estado);
+    }
+
+
+    public virtual ObjectResult<SeleccionarReservasDTO> up_Reservas_SEL_SeleccionarReservas(string dni, string isbn)
+    {
+
+        var dniParameter = dni != null ?
+            new ObjectParameter("dni", dni) :
+            new ObjectParameter("dni", typeof(string));
+
+
+        var isbnParameter = isbn != null ?
+            new ObjectParameter("isbn", isbn) :
+            new ObjectParameter("isbn", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SeleccionarReservasDTO>("up_Reservas_SEL_SeleccionarReservas", dniParameter, isbnParameter);
+    }
+
+
+    public virtual ObjectResult<SeleccionarAutoresLibroDTO> up_Autores_Libros_SEL_SeleccionarAutoresLibro(string id_autor, string isbn)
+    {
+
+        var id_autorParameter = id_autor != null ?
+            new ObjectParameter("id_autor", id_autor) :
+            new ObjectParameter("id_autor", typeof(string));
+
+
+        var isbnParameter = isbn != null ?
+            new ObjectParameter("isbn", isbn) :
+            new ObjectParameter("isbn", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SeleccionarAutoresLibroDTO>("up_Autores_Libros_SEL_SeleccionarAutoresLibro", id_autorParameter, isbnParameter);
+    }
+
+
+    public virtual ObjectResult<SeleccionarCategoriaLibroDTO> up_Categorias_Libros_SEL_SeleccionarCategoriaLibro(string id_categorias_libros, string id_categoria, string isbn)
+    {
+
+        var id_categorias_librosParameter = id_categorias_libros != null ?
+            new ObjectParameter("id_categorias_libros", id_categorias_libros) :
+            new ObjectParameter("id_categorias_libros", typeof(string));
+
+
+        var id_categoriaParameter = id_categoria != null ?
+            new ObjectParameter("id_categoria", id_categoria) :
+            new ObjectParameter("id_categoria", typeof(string));
+
+
+        var isbnParameter = isbn != null ?
+            new ObjectParameter("isbn", isbn) :
+            new ObjectParameter("isbn", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SeleccionarCategoriaLibroDTO>("up_Categorias_Libros_SEL_SeleccionarCategoriaLibro", id_categorias_librosParameter, id_categoriaParameter, isbnParameter);
+    }
+
+
+    public virtual ObjectResult<Nullable<int>> up_Autores_DEL_BorrarAutor(string id_autor, ObjectParameter estado)
+    {
+
+        var id_autorParameter = id_autor != null ?
+            new ObjectParameter("id_autor", id_autor) :
+            new ObjectParameter("id_autor", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("up_Autores_DEL_BorrarAutor", id_autorParameter, estado);
+    }
+
+
+    public virtual ObjectResult<Nullable<int>> up_Autores_Libros_DEL_BorrarAutorLibro(string id_autores_libros, ObjectParameter estado)
+    {
+
+        var id_autores_librosParameter = id_autores_libros != null ?
+            new ObjectParameter("id_autores_libros", id_autores_libros) :
+            new ObjectParameter("id_autores_libros", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("up_Autores_Libros_DEL_BorrarAutorLibro", id_autores_librosParameter, estado);
+    }
+
+
+    public virtual ObjectResult<Nullable<int>> up_Categorias_Libros_DEL_BorrarCategoriaLibro(string id_categorias_libros, ObjectParameter estado)
+    {
+
+        var id_categorias_librosParameter = id_categorias_libros != null ?
+            new ObjectParameter("id_categorias_libros", id_categorias_libros) :
+            new ObjectParameter("id_categorias_libros", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("up_Categorias_Libros_DEL_BorrarCategoriaLibro", id_categorias_librosParameter, estado);
+    }
+
+
+    public virtual ObjectResult<Nullable<int>> up_Categorias_DEL_BorrarCategoria(string id_categoria, ObjectParameter estado)
+    {
+
+        var id_categoriaParameter = id_categoria != null ?
+            new ObjectParameter("id_categoria", id_categoria) :
+            new ObjectParameter("id_categoria", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("up_Categorias_DEL_BorrarCategoria", id_categoriaParameter, estado);
+    }
+
+
+    public virtual ObjectResult<Nullable<int>> up_Libros_UPD_ActualizarLibro(string isbn, string titulo, string subtitulo, Nullable<System.DateTime> fechaPublicacion, string descripcion, Nullable<int> nPaginas, string imagen, string editorial, Nullable<int> stock, ObjectParameter estado)
+    {
+
+        var isbnParameter = isbn != null ?
+            new ObjectParameter("isbn", isbn) :
+            new ObjectParameter("isbn", typeof(string));
+
+
+        var tituloParameter = titulo != null ?
+            new ObjectParameter("titulo", titulo) :
+            new ObjectParameter("titulo", typeof(string));
+
+
+        var subtituloParameter = subtitulo != null ?
+            new ObjectParameter("subtitulo", subtitulo) :
+            new ObjectParameter("subtitulo", typeof(string));
+
+
+        var fechaPublicacionParameter = fechaPublicacion.HasValue ?
+            new ObjectParameter("fechaPublicacion", fechaPublicacion) :
+            new ObjectParameter("fechaPublicacion", typeof(System.DateTime));
+
+
+        var descripcionParameter = descripcion != null ?
+            new ObjectParameter("descripcion", descripcion) :
+            new ObjectParameter("descripcion", typeof(string));
+
+
+        var nPaginasParameter = nPaginas.HasValue ?
+            new ObjectParameter("nPaginas", nPaginas) :
+            new ObjectParameter("nPaginas", typeof(int));
+
+
+        var imagenParameter = imagen != null ?
+            new ObjectParameter("imagen", imagen) :
+            new ObjectParameter("imagen", typeof(string));
+
+
+        var editorialParameter = editorial != null ?
+            new ObjectParameter("editorial", editorial) :
+            new ObjectParameter("editorial", typeof(string));
+
+
+        var stockParameter = stock.HasValue ?
+            new ObjectParameter("stock", stock) :
+            new ObjectParameter("stock", typeof(int));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("up_Libros_UPD_ActualizarLibro", isbnParameter, tituloParameter, subtituloParameter, fechaPublicacionParameter, descripcionParameter, nPaginasParameter, imagenParameter, editorialParameter, stockParameter, estado);
     }
 
 }

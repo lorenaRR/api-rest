@@ -35,7 +35,10 @@
       <Parameter Name="dni" Mode="In" Type="String" />
       <Parameter Name="Estado" Mode="InOut" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="up_Categorias_SEL_SeleccionarCategorias" ReturnType="Collection(BibliotecaModel.SeleccionarCategoriasDTO)" />
+    <FunctionImport Name="up_Categorias_SEL_SeleccionarCategorias" ReturnType="Collection(BibliotecaModel.SeleccionarCategoriasDTO)">
+      <Parameter Name="id_categoria" Mode="In" Type="String" />
+      <Parameter Name="categoria" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="up_Usuarios_UPD_ActualizarPassword" ReturnType="Collection(Int32)">
       <Parameter Name="dni" Mode="In" Type="String" />
       <Parameter Name="pass" Mode="In" Type="String" />
@@ -82,11 +85,63 @@
       <Parameter Name="Estado" Mode="InOut" Type="String" />
     </FunctionImport>
     <FunctionImport Name="up_Autores_SEL_SeleccionarAutores" ReturnType="Collection(BibliotecaModel.SeleccionarAutoresDTO)">
+      <Parameter Name="id_autor" Mode="In" Type="String" />
       <Parameter Name="nombre" Mode="In" Type="String" />
       <Parameter Name="apellidos" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="up_Categorias_INS_InsertarCategoria" ReturnType="Collection(Int32)">
       <Parameter Name="categoria" Mode="In" Type="String" />
+      <Parameter Name="Estado" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="up_Libros_DEL_BorrarLibro" ReturnType="Collection(Int32)">
+      <Parameter Name="isbn" Mode="In" Type="String" />
+      <Parameter Name="Estado" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="up_Reservas_INS_InsertarReserva" ReturnType="Collection(Int32)">
+      <Parameter Name="isbn" Mode="In" Type="String" />
+      <Parameter Name="dni" Mode="In" Type="String" />
+      <Parameter Name="fecha_reserva" Mode="In" Type="DateTime" />
+      <Parameter Name="Estado" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="up_Reservas_SEL_SeleccionarReservas" ReturnType="Collection(BibliotecaModel.SeleccionarReservasDTO)">
+      <Parameter Name="dni" Mode="In" Type="String" />
+      <Parameter Name="isbn" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="up_Autores_Libros_SEL_SeleccionarAutoresLibro" ReturnType="Collection(BibliotecaModel.SeleccionarAutoresLibroDTO)">
+      <Parameter Name="id_autor" Mode="In" Type="String" />
+      <Parameter Name="isbn" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="up_Categorias_Libros_SEL_SeleccionarCategoriaLibro" ReturnType="Collection(BibliotecaModel.SeleccionarCategoriaLibroDTO)">
+      <Parameter Name="id_categorias_libros" Mode="In" Type="String" />
+      <Parameter Name="id_categoria" Mode="In" Type="String" />
+      <Parameter Name="isbn" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="up_Autores_DEL_BorrarAutor" ReturnType="Collection(Int32)">
+      <Parameter Name="id_autor" Mode="In" Type="String" />
+      <Parameter Name="Estado" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="up_Autores_Libros_DEL_BorrarAutorLibro" ReturnType="Collection(Int32)">
+      <Parameter Name="id_autores_libros" Mode="In" Type="String" />
+      <Parameter Name="Estado" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="up_Categorias_Libros_DEL_BorrarCategoriaLibro" ReturnType="Collection(Int32)">
+      <Parameter Name="id_categorias_libros" Mode="In" Type="String" />
+      <Parameter Name="Estado" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="up_Categorias_DEL_BorrarCategoria" ReturnType="Collection(Int32)">
+      <Parameter Name="id_categoria" Mode="In" Type="String" />
+      <Parameter Name="Estado" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="up_Libros_UPD_ActualizarLibro" ReturnType="Collection(Int32)">
+      <Parameter Name="isbn" Mode="In" Type="String" />
+      <Parameter Name="titulo" Mode="In" Type="String" />
+      <Parameter Name="subtitulo" Mode="In" Type="String" />
+      <Parameter Name="fechaPublicacion" Mode="In" Type="DateTime" />
+      <Parameter Name="descripcion" Mode="In" Type="String" />
+      <Parameter Name="nPaginas" Mode="In" Type="Int32" />
+      <Parameter Name="imagen" Mode="In" Type="String" />
+      <Parameter Name="editorial" Mode="In" Type="String" />
+      <Parameter Name="stock" Mode="In" Type="Int32" />
       <Parameter Name="Estado" Mode="InOut" Type="String" />
     </FunctionImport>
   </EntityContainer>
@@ -111,19 +166,32 @@
     <Property Type="Boolean" Name="admin" Nullable="true" />
     <Property Type="String" Name="password" Nullable="true" MaxLength="50" />
   </ComplexType>
+  <ComplexType Name="SeleccionarReservasDTO">
+    <Property Type="String" Name="dni" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="isbn" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="fecha_reserva" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SeleccionarAutoresLibroDTO">
+    <Property Type="Guid" Name="id_autor" Nullable="true" />
+    <Property Type="String" Name="isbn" Nullable="true" MaxLength="50" />
+  </ComplexType>
   <ComplexType Name="SeleccionarLibrosDTO">
     <Property Type="String" Name="isbn" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="titulo" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="subtitulo" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="apellidos" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="categoria" Nullable="true" MaxLength="50" />
-    <Property Type="DateTime" Name="fechaPublicacion" Nullable="true" />
-    <Property Type="String" Name="editorial" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="descripcion" Nullable="true" MaxLength="Max" />
-    <Property Type="Int32" Name="nPaginas" Nullable="true" />
-    <Property Type="String" Name="imagen" Nullable="true" MaxLength="150" />
-    <Property Type="Int32" Name="stock" Nullable="true" />
+    <Property Type="String" Name="titulo" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="subtitulo" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="fechaPublicacion" Nullable="false" />
+    <Property Type="String" Name="editorial" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="descripcion" Nullable="false" MaxLength="500" />
+    <Property Type="Int32" Name="nPaginas" Nullable="false" />
+    <Property Type="String" Name="imagen" Nullable="false" MaxLength="500" />
+    <Property Type="Int32" Name="stock" Nullable="false" />
+    <Property Type="Boolean" Name="reservado" Nullable="false" />
+    <Property Type="Boolean" Name="prestado" Nullable="false" />
+    <Property Type="Guid" Name="id_autor" Nullable="false" />
+    <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="apellidos" Nullable="false" MaxLength="50" />
+    <Property Type="Guid" Name="id_categoria" Nullable="false" />
+    <Property Type="String" Name="categoria" Nullable="false" MaxLength="50" />
   </ComplexType>
   <ComplexType Name="SeleccionarCategoriasDTO">
     <Property Type="Guid" Name="id_categoria" Nullable="false" />
@@ -133,5 +201,10 @@
     <Property Type="Guid" Name="id_autor" Nullable="false" />
     <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="apellidos" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="SeleccionarCategoriaLibroDTO">
+    <Property Type="Guid" Name="id_categorias_libros" Nullable="false" />
+    <Property Type="Guid" Name="id_categoria" Nullable="true" />
+    <Property Type="String" Name="isbn" Nullable="true" MaxLength="50" />
   </ComplexType>
 </Schema>

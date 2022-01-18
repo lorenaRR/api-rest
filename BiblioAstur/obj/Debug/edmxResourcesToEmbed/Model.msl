@@ -47,15 +47,19 @@
           <ScalarProperty Name="isbn" ColumnName="isbn" />
           <ScalarProperty Name="titulo" ColumnName="titulo" />
           <ScalarProperty Name="subtitulo" ColumnName="subtitulo" />
-          <ScalarProperty Name="nombre" ColumnName="nombre" />
-          <ScalarProperty Name="apellidos" ColumnName="apellidos" />
-          <ScalarProperty Name="categoria" ColumnName="categoria" />
           <ScalarProperty Name="fechaPublicacion" ColumnName="fechaPublicacion" />
           <ScalarProperty Name="editorial" ColumnName="editorial" />
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
           <ScalarProperty Name="nPaginas" ColumnName="nPaginas" />
           <ScalarProperty Name="imagen" ColumnName="imagen" />
           <ScalarProperty Name="stock" ColumnName="stock" />
+          <ScalarProperty Name="reservado" ColumnName="reservado" />
+          <ScalarProperty Name="prestado" ColumnName="prestado" />
+          <ScalarProperty Name="id_autor" ColumnName="id_autor" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+          <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
+          <ScalarProperty Name="categoria" ColumnName="categoria" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -73,5 +77,38 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="up_Categorias_INS_InsertarCategoria" FunctionName="BibliotecaModel.Store.up_Categorias_INS_InsertarCategoria" />
+    <FunctionImportMapping FunctionImportName="up_Libros_DEL_BorrarLibro" FunctionName="BibliotecaModel.Store.up_Libros_DEL_BorrarLibro" />
+    <FunctionImportMapping FunctionImportName="up_Reservas_INS_InsertarReserva" FunctionName="BibliotecaModel.Store.up_Reservas_INS_InsertarReserva" />
+    <FunctionImportMapping FunctionImportName="up_Reservas_SEL_SeleccionarReservas" FunctionName="BibliotecaModel.Store.up_Reservas_SEL_SeleccionarReservas">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BibliotecaModel.SeleccionarReservasDTO">
+          <ScalarProperty Name="dni" ColumnName="dni" />
+          <ScalarProperty Name="isbn" ColumnName="isbn" />
+          <ScalarProperty Name="fecha_reserva" ColumnName="fecha_reserva" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="up_Autores_Libros_SEL_SeleccionarAutoresLibro" FunctionName="BibliotecaModel.Store.up_Autores_Libros_SEL_SeleccionarAutoresLibro">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BibliotecaModel.SeleccionarAutoresLibroDTO">
+          <ScalarProperty Name="id_autor" ColumnName="id_autor" />
+          <ScalarProperty Name="isbn" ColumnName="isbn" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="up_Categorias_Libros_SEL_SeleccionarCategoriaLibro" FunctionName="BibliotecaModel.Store.up_Categorias_Libros_SEL_SeleccionarCategoriaLibro">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BibliotecaModel.SeleccionarCategoriaLibroDTO">
+          <ScalarProperty Name="id_categorias_libros" ColumnName="id_categorias_libros" />
+          <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
+          <ScalarProperty Name="isbn" ColumnName="isbn" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="up_Autores_DEL_BorrarAutor" FunctionName="BibliotecaModel.Store.up_Autores_DEL_BorrarAutor" />
+    <FunctionImportMapping FunctionImportName="up_Autores_Libros_DEL_BorrarAutorLibro" FunctionName="BibliotecaModel.Store.up_Autores_Libros_DEL_BorrarAutorLibro" />
+    <FunctionImportMapping FunctionImportName="up_Categorias_Libros_DEL_BorrarCategoriaLibro" FunctionName="BibliotecaModel.Store.up_Categorias_Libros_DEL_BorrarCategoriaLibro" />
+    <FunctionImportMapping FunctionImportName="up_Categorias_DEL_BorrarCategoria" FunctionName="BibliotecaModel.Store.up_Categorias_DEL_BorrarCategoria" />
+    <FunctionImportMapping FunctionImportName="up_Libros_UPD_ActualizarLibro" FunctionName="BibliotecaModel.Store.up_Libros_UPD_ActualizarLibro" />
   </EntityContainerMapping>
 </Mapping>

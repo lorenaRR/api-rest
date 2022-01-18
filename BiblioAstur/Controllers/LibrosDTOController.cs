@@ -33,6 +33,7 @@ namespace BiblioAstur.Controllers
             public bool prestado;
         }
 
+
         // GET: api/SeleccionarLibros
         [ResponseType(typeof(SeleccionarLibrosDTO))]
         [HttpGet]
@@ -85,20 +86,18 @@ namespace BiblioAstur.Controllers
             base.Dispose(disposing);
         }
 
-
-
-        // PUT api/Usuarios/ActualizarLibros
-        /*[HttpPut]
+        // PUT api/Libros/ActualizarLibros
+        [HttpPut]
         [ResponseType(typeof(Libros))]
         [Route("api/Libros/ActualizarLibros")]
         public IHttpActionResult ActualizarLibros([FromBody] Libros libro)
         {
             ResultadoDTO respuesta = new ResultadoDTO();
             ObjectParameter estadoObjectParameter = new ObjectParameter("estado", typeof(String));
-            respuesta.Resultado = Convert.ToBoolean(db.up_Usuarios_UPD_ActualizarLibro(, estadoObjectParameter).FirstOrDefault().Value);
+            respuesta.Resultado = Convert.ToBoolean(db.up_Libros_UPD_ActualizarLibro(libro.isbn, libro.titulo, libro.subtitulo, libro.fechaPublicacion, libro.descripcion, libro.nPaginas, libro.imagen, libro.editorial, libro.stock, estadoObjectParameter).FirstOrDefault().Value);
             respuesta.Estado = estadoObjectParameter.Value.ToString();
             return Ok(respuesta);
-        }*/
+        }
 
         // POST api/Libros/InsertarLibros
         [HttpPost]
@@ -114,6 +113,18 @@ namespace BiblioAstur.Controllers
             return Ok(respuesta);
         }
 
+        // DELETE api/Libros/BorrarLibro
+        [HttpDelete]
+        [ResponseType(typeof(String))]
+        [Route("api/Libros/BorrarLibro/{isbn}")]
+        public IHttpActionResult BorrarLibro(String isbn)
+        {
+            ResultadoDTO respuesta = new ResultadoDTO();
+            ObjectParameter estadoObjectParameter = new ObjectParameter("estado", typeof(String));
+            respuesta.Resultado = Convert.ToBoolean(db.up_Libros_DEL_BorrarLibro(isbn, estadoObjectParameter).FirstOrDefault().Value);
+            respuesta.Estado = estadoObjectParameter.Value.ToString();
+            return Ok(respuesta);
+        }
 
         public class ResultadoDTO
         {
