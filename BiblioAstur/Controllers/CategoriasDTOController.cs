@@ -114,24 +114,14 @@ namespace BiblioAstur.Controllers
         }
 
         // GET: api/Categorias/SeleccionarCategoriasLibro
-        [ResponseType(typeof(SeleccionarCategoriaLibroDTO))]
+        [ResponseType(typeof(ListaCategoriasLibroDTO))]
         [HttpGet]
         [Route("api/Categorias/SeleccionarCategoriasLibro")]
 
-        public IHttpActionResult SeleccionarCategoriasLibro(String id_categoria_libro, String id_categoria, String isbn)
+        public IHttpActionResult SeleccionarCategoriasLibro(String isbn)
 
         {
-            List<SeleccionarCategoriaLibroDTO> lista = null;
-
-            if (id_categoria_libro == null)
-            {
-                id_categoria_libro = "";
-            }
-
-            if (id_categoria == null)
-            {
-                id_categoria = "";
-            }
+            List<ListaCategoriasLibroDTO> lista = null;
 
             if (isbn == null)
             {
@@ -139,7 +129,7 @@ namespace BiblioAstur.Controllers
             }
 
 
-            lista = this.db.up_Categorias_Libros_SEL_SeleccionarCategoriaLibro(id_categoria_libro, id_categoria, isbn).ToList();
+            lista = this.db.up_Categorias_Libros_SEL_ListaCategoriasLibro(isbn).ToList();
 
             if (lista.Count == 0)
             {
@@ -153,12 +143,12 @@ namespace BiblioAstur.Controllers
         // DELETE api/Categorias/BorrarCategoriasLibros
         [HttpDelete]
         [ResponseType(typeof(String))]
-        [Route("api/Categorias/BorrarCategoriasLibros/{id_categorias_libros}")]
-        public IHttpActionResult BorrarCategoriasLibros(String id_categorias_libros)
+        [Route("api/Categorias/BorrarCategoriasLibros")]
+        public IHttpActionResult BorrarCategoriasLibros(String id_categoria, String isbn)
         {
             ResultadoDTO respuesta = new ResultadoDTO();
             ObjectParameter estadoObjectParameter = new ObjectParameter("estado", typeof(String));
-            respuesta.Resultado = Convert.ToBoolean(db.up_Categorias_Libros_DEL_BorrarCategoriaLibro(id_categorias_libros, estadoObjectParameter).FirstOrDefault().Value);
+            respuesta.Resultado = Convert.ToBoolean(db.up_Categorias_Libros_DEL_BorrarCategoriaLibro(id_categoria,isbn, estadoObjectParameter).FirstOrDefault().Value);
             respuesta.Estado = estadoObjectParameter.Value.ToString();
             return Ok(respuesta);
         }

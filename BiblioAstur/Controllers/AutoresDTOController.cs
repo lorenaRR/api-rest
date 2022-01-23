@@ -60,10 +60,10 @@ namespace BiblioAstur.Controllers
 
             lista = this.db.up_Autores_SEL_SeleccionarAutores(id_autor,nombre,apellidos).ToList();
 
-            if (lista.Count == 0)
+            /*if (lista.Count == 0)
             {
                 return NotFound();
-            }
+            }*/
 
             return Ok(lista);
 
@@ -100,14 +100,14 @@ namespace BiblioAstur.Controllers
 
 
         // GET: api/Autores/SeleccionarAutoresLibro
-        [ResponseType(typeof(SeleccionarAutoresLibroDTO))]
+        [ResponseType(typeof(ListaAutoresLibroDTO))]
         [HttpGet]
         [Route("api/Autores/SeleccionarAutoresLibro")]
 
-        public IHttpActionResult SeleccionarAutoresLibro(String id_autor, string isbn)
+        public IHttpActionResult SeleccionarAutoresLibro(string isbn)
 
         {
-            List<SeleccionarAutoresLibroDTO> lista = null;
+            List<ListaAutoresLibroDTO> lista = null;
 
 
             if (isbn == null)
@@ -115,12 +115,7 @@ namespace BiblioAstur.Controllers
                 isbn = "";
             }
 
-            if (id_autor == null)
-            {
-                id_autor = "";
-            }
-
-            lista = this.db.up_Autores_Libros_SEL_SeleccionarAutoresLibro(id_autor, isbn).ToList();
+            lista = this.db.up_Autores_Libros_SEL_ListaAutoresLibro( isbn).ToList();
 
             if (lista.Count == 0)
             {
@@ -149,12 +144,12 @@ namespace BiblioAstur.Controllers
         // DELETE api/Autores/BorrarAutoresLibros
         [HttpDelete]
         [ResponseType(typeof(String))]
-        [Route("api/Autores/BorrarAutoresLibros/{id_autores_libros}")]
-        public IHttpActionResult BorrarAutoresLibros(String id_autores_libros)
+        [Route("api/Autores/BorrarAutoresLibros")]
+        public IHttpActionResult BorrarAutoresLibros(String id_autor, String isbn)
         {
             ResultadoDTO respuesta = new ResultadoDTO();
             ObjectParameter estadoObjectParameter = new ObjectParameter("estado", typeof(String));
-            respuesta.Resultado = Convert.ToBoolean(db.up_Autores_Libros_DEL_BorrarAutorLibro(id_autores_libros, estadoObjectParameter).FirstOrDefault().Value);
+            respuesta.Resultado = Convert.ToBoolean(db.up_Autores_Libros_DEL_BorrarAutorLibro(id_autor, isbn, estadoObjectParameter).FirstOrDefault().Value);
             respuesta.Estado = estadoObjectParameter.Value.ToString();
             return Ok(respuesta);
         }

@@ -10,13 +10,17 @@
     <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
   </Function>
   <Function Name="up_Autores_Libros_DEL_BorrarAutorLibro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="id_autores_libros" Type="nvarchar" Mode="In" />
+    <Parameter Name="id_autor" Type="nvarchar" Mode="In" />
+    <Parameter Name="isbn" Type="nvarchar" Mode="In" />
     <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
   </Function>
   <Function Name="up_Autores_Libros_INS_InsertarAutorLibro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id_autor" Type="uniqueidentifier" Mode="In" />
     <Parameter Name="isbn" Type="nvarchar" Mode="In" />
     <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
+  </Function>
+  <Function Name="up_Autores_Libros_SEL_ListaAutoresLibro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="isbn" Type="varchar" Mode="In" />
   </Function>
   <Function Name="up_Autores_Libros_SEL_SeleccionarAutoresLibro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id_autor" Type="varchar" Mode="In" />
@@ -36,13 +40,17 @@
     <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
   </Function>
   <Function Name="up_Categorias_Libros_DEL_BorrarCategoriaLibro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="id_categorias_libros" Type="nvarchar" Mode="In" />
+    <Parameter Name="id_categoria" Type="nvarchar" Mode="In" />
+    <Parameter Name="isbn" Type="nvarchar" Mode="In" />
     <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
   </Function>
   <Function Name="up_Categorias_Libros_INS_InsertarCategoriaLibro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id_categoria" Type="uniqueidentifier" Mode="In" />
     <Parameter Name="isbn" Type="nvarchar" Mode="In" />
     <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
+  </Function>
+  <Function Name="up_Categorias_Libros_SEL_ListaCategoriasLibro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="isbn" Type="varchar" Mode="In" />
   </Function>
   <Function Name="up_Categorias_Libros_SEL_SeleccionarCategoriaLibro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id_categorias_libros" Type="nvarchar" Mode="In" />
@@ -76,7 +84,6 @@
     <Parameter Name="titulo" Type="varchar" Mode="In" />
     <Parameter Name="subtitulo" Type="varchar" Mode="In" />
     <Parameter Name="editorial" Type="varchar" Mode="In" />
-    <Parameter Name="autor" Type="varchar" Mode="In" />
   </Function>
   <Function Name="up_Libros_UPD_ActualizarLibro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="isbn" Type="nvarchar" Mode="In" />
@@ -89,6 +96,17 @@
     <Parameter Name="editorial" Type="nvarchar" Mode="In" />
     <Parameter Name="stock" Type="int" Mode="In" />
     <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
+  </Function>
+  <Function Name="up_Prestamos_INS_InsertarPrestamo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="isbn" Type="nvarchar" Mode="In" />
+    <Parameter Name="dni" Type="nvarchar" Mode="In" />
+    <Parameter Name="fechaPrestamo" Type="date" Mode="In" />
+    <Parameter Name="fechaEntrega" Type="date" Mode="In" />
+    <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
+  </Function>
+  <Function Name="up_Prestamos_SEL_SeleccionarPrestamos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="isbn" Type="varchar" Mode="In" />
+    <Parameter Name="dni" Type="varchar" Mode="In" />
   </Function>
   <Function Name="up_Reservas_INS_InsertarReserva" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="isbn" Type="varchar" Mode="In" />

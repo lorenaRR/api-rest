@@ -14,30 +14,18 @@ namespace BiblioAstur
 
 using System;
     
-public partial class SeleccionarLibrosDTO
+public partial class SeleccionarPrestamosDTO
 {
+
+    public System.Guid id_prestamo { get; set; }
 
     public string isbn { get; set; }
 
-    public string titulo { get; set; }
+    public string dni { get; set; }
 
-    public string subtitulo { get; set; }
+    public Nullable<System.DateTime> fechaPrestamo { get; set; }
 
-    public System.DateTime fechaPublicacion { get; set; }
-
-    public string editorial { get; set; }
-
-    public string descripcion { get; set; }
-
-    public int nPaginas { get; set; }
-
-    public string imagen { get; set; }
-
-    public int stock { get; set; }
-
-    public bool reservado { get; set; }
-
-    public bool prestado { get; set; }
+    public Nullable<System.DateTime> fechaEntrega { get; set; }
 
 }
 

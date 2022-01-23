@@ -15,13 +15,17 @@
           <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
         </Function>
         <Function Name="up_Autores_Libros_DEL_BorrarAutorLibro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id_autores_libros" Type="nvarchar" Mode="In" />
+          <Parameter Name="id_autor" Type="nvarchar" Mode="In" />
+          <Parameter Name="isbn" Type="nvarchar" Mode="In" />
           <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
         </Function>
         <Function Name="up_Autores_Libros_INS_InsertarAutorLibro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_autor" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="isbn" Type="nvarchar" Mode="In" />
           <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="up_Autores_Libros_SEL_ListaAutoresLibro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="isbn" Type="varchar" Mode="In" />
         </Function>
         <Function Name="up_Autores_Libros_SEL_SeleccionarAutoresLibro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_autor" Type="varchar" Mode="In" />
@@ -41,13 +45,17 @@
           <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
         </Function>
         <Function Name="up_Categorias_Libros_DEL_BorrarCategoriaLibro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id_categorias_libros" Type="nvarchar" Mode="In" />
+          <Parameter Name="id_categoria" Type="nvarchar" Mode="In" />
+          <Parameter Name="isbn" Type="nvarchar" Mode="In" />
           <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
         </Function>
         <Function Name="up_Categorias_Libros_INS_InsertarCategoriaLibro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_categoria" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="isbn" Type="nvarchar" Mode="In" />
           <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="up_Categorias_Libros_SEL_ListaCategoriasLibro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="isbn" Type="varchar" Mode="In" />
         </Function>
         <Function Name="up_Categorias_Libros_SEL_SeleccionarCategoriaLibro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_categorias_libros" Type="nvarchar" Mode="In" />
@@ -81,7 +89,6 @@
           <Parameter Name="titulo" Type="varchar" Mode="In" />
           <Parameter Name="subtitulo" Type="varchar" Mode="In" />
           <Parameter Name="editorial" Type="varchar" Mode="In" />
-          <Parameter Name="autor" Type="varchar" Mode="In" />
         </Function>
         <Function Name="up_Libros_UPD_ActualizarLibro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="isbn" Type="nvarchar" Mode="In" />
@@ -94,6 +101,17 @@
           <Parameter Name="editorial" Type="nvarchar" Mode="In" />
           <Parameter Name="stock" Type="int" Mode="In" />
           <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="up_Prestamos_INS_InsertarPrestamo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="isbn" Type="nvarchar" Mode="In" />
+          <Parameter Name="dni" Type="nvarchar" Mode="In" />
+          <Parameter Name="fechaPrestamo" Type="date" Mode="In" />
+          <Parameter Name="fechaEntrega" Type="date" Mode="In" />
+          <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="up_Prestamos_SEL_SeleccionarPrestamos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="isbn" Type="varchar" Mode="In" />
+          <Parameter Name="dni" Type="varchar" Mode="In" />
         </Function>
         <Function Name="up_Reservas_INS_InsertarReserva" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="isbn" Type="varchar" Mode="In" />
@@ -201,7 +219,6 @@
             <Parameter Name="titulo" Mode="In" Type="String" />
             <Parameter Name="subtitulo" Mode="In" Type="String" />
             <Parameter Name="editorial" Mode="In" Type="String" />
-            <Parameter Name="autor" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="up_Libros_INS_InsertarLibro" ReturnType="Collection(Int32)">
             <Parameter Name="isbn" Mode="In" Type="String" />
@@ -269,11 +286,13 @@
             <Parameter Name="Estado" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="up_Autores_Libros_DEL_BorrarAutorLibro" ReturnType="Collection(Int32)">
-            <Parameter Name="id_autores_libros" Mode="In" Type="String" />
+            <Parameter Name="id_autor" Mode="In" Type="String" />
+            <Parameter Name="isbn" Mode="In" Type="String" />
             <Parameter Name="Estado" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="up_Categorias_Libros_DEL_BorrarCategoriaLibro" ReturnType="Collection(Int32)">
-            <Parameter Name="id_categorias_libros" Mode="In" Type="String" />
+            <Parameter Name="id_categoria" Mode="In" Type="String" />
+            <Parameter Name="isbn" Mode="In" Type="String" />
             <Parameter Name="Estado" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="up_Categorias_DEL_BorrarCategoria" ReturnType="Collection(Int32)">
@@ -291,6 +310,23 @@
             <Parameter Name="editorial" Mode="In" Type="String" />
             <Parameter Name="stock" Mode="In" Type="Int32" />
             <Parameter Name="Estado" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="up_Categorias_Libros_SEL_ListaCategoriasLibro" ReturnType="Collection(BibliotecaModel.ListaCategoriasLibroDTO)">
+          <Parameter Name="isbn" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="up_Autores_Libros_SEL_ListaAutoresLibro" ReturnType="Collection(BibliotecaModel.ListaAutoresLibroDTO)">
+          <Parameter Name="isbn" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="up_Prestamos_INS_InsertarPrestamo" ReturnType="Collection(Int32)">
+            <Parameter Name="isbn" Mode="In" Type="String" />
+            <Parameter Name="dni" Mode="In" Type="String" />
+            <Parameter Name="fechaPrestamo" Mode="In" Type="DateTime" />
+            <Parameter Name="fechaEntrega" Mode="In" Type="DateTime" />
+            <Parameter Name="Estado" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="up_Prestamos_SEL_SeleccionarPrestamos" ReturnType="Collection(BibliotecaModel.SeleccionarPrestamosDTO)">
+            <Parameter Name="isbn" Mode="In" Type="String" />
+            <Parameter Name="dni" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="SeleccionarUsuariosDTO">
@@ -323,24 +359,6 @@
           <Property Type="Guid" Name="id_autor" Nullable="true" />
           <Property Type="String" Name="isbn" Nullable="true" MaxLength="50" />
         </ComplexType>
-        <ComplexType Name="SeleccionarLibrosDTO">
-          <Property Type="String" Name="isbn" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="titulo" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="subtitulo" Nullable="false" MaxLength="50" />
-          <Property Type="DateTime" Name="fechaPublicacion" Nullable="false" />
-          <Property Type="String" Name="editorial" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="500" />
-          <Property Type="Int32" Name="nPaginas" Nullable="false" />
-          <Property Type="String" Name="imagen" Nullable="false" MaxLength="500" />
-          <Property Type="Int32" Name="stock" Nullable="false" />
-          <Property Type="Boolean" Name="reservado" Nullable="false" />
-          <Property Type="Boolean" Name="prestado" Nullable="false" />
-          <Property Type="Guid" Name="id_autor" Nullable="false" />
-          <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="apellidos" Nullable="false" MaxLength="50" />
-          <Property Type="Guid" Name="id_categoria" Nullable="false" />
-          <Property Type="String" Name="categoria" Nullable="false" MaxLength="50" />
-        </ComplexType>
         <ComplexType Name="SeleccionarCategoriasDTO">
           <Property Type="Guid" Name="id_categoria" Nullable="false" />
           <Property Type="String" Name="categoria" Nullable="true" MaxLength="50" />
@@ -354,6 +372,35 @@
           <Property Type="Guid" Name="id_categorias_libros" Nullable="false" />
           <Property Type="Guid" Name="id_categoria" Nullable="true" />
           <Property Type="String" Name="isbn" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SeleccionarLibrosDTO">
+          <Property Type="String" Name="isbn" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="titulo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="subtitulo" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="fechaPublicacion" Nullable="false" />
+          <Property Type="String" Name="editorial" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="500" />
+          <Property Type="Int32" Name="nPaginas" Nullable="false" />
+          <Property Type="String" Name="imagen" Nullable="false" MaxLength="500" />
+          <Property Type="Int32" Name="stock" Nullable="false" />
+          <Property Type="Boolean" Name="reservado" Nullable="false" />
+          <Property Type="Boolean" Name="prestado" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="ListaAutoresLibroDTO">
+          <Property Type="Guid" Name="id_autor" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="apellidos" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="ListaCategoriasLibroDTO">
+          <Property Type="Guid" Name="id_categoria" Nullable="false" />
+          <Property Type="String" Name="categoria" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SeleccionarPrestamosDTO">
+          <Property Type="Guid" Name="id_prestamo" Nullable="false" />
+          <Property Type="String" Name="isbn" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="dni" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="fechaPrestamo" Nullable="true" />
+          <Property Type="DateTime" Name="fechaEntrega" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -416,11 +463,6 @@
                 <ScalarProperty Name="stock" ColumnName="stock" />
                 <ScalarProperty Name="reservado" ColumnName="reservado" />
                 <ScalarProperty Name="prestado" ColumnName="prestado" />
-                <ScalarProperty Name="id_autor" ColumnName="id_autor" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
-                <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
-                <ScalarProperty Name="categoria" ColumnName="categoria" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -471,6 +513,35 @@
           <FunctionImportMapping FunctionImportName="up_Categorias_Libros_DEL_BorrarCategoriaLibro" FunctionName="BibliotecaModel.Store.up_Categorias_Libros_DEL_BorrarCategoriaLibro" />
           <FunctionImportMapping FunctionImportName="up_Categorias_DEL_BorrarCategoria" FunctionName="BibliotecaModel.Store.up_Categorias_DEL_BorrarCategoria" />
           <FunctionImportMapping FunctionImportName="up_Libros_UPD_ActualizarLibro" FunctionName="BibliotecaModel.Store.up_Libros_UPD_ActualizarLibro" />
+          <FunctionImportMapping FunctionImportName="up_Categorias_Libros_SEL_ListaCategoriasLibro" FunctionName="BibliotecaModel.Store.up_Categorias_Libros_SEL_ListaCategoriasLibro">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BibliotecaModel.ListaCategoriasLibroDTO">
+                <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
+                <ScalarProperty Name="categoria" ColumnName="categoria" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="up_Autores_Libros_SEL_ListaAutoresLibro" FunctionName="BibliotecaModel.Store.up_Autores_Libros_SEL_ListaAutoresLibro">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BibliotecaModel.ListaAutoresLibroDTO">
+                <ScalarProperty Name="id_autor" ColumnName="id_autor" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="up_Prestamos_INS_InsertarPrestamo" FunctionName="BibliotecaModel.Store.up_Prestamos_INS_InsertarPrestamo" />
+          <FunctionImportMapping FunctionImportName="up_Prestamos_SEL_SeleccionarPrestamos" FunctionName="BibliotecaModel.Store.up_Prestamos_SEL_SeleccionarPrestamos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BibliotecaModel.SeleccionarPrestamosDTO">
+                <ScalarProperty Name="id_prestamo" ColumnName="id_prestamo" />
+                <ScalarProperty Name="isbn" ColumnName="isbn" />
+                <ScalarProperty Name="dni" ColumnName="dni" />
+                <ScalarProperty Name="fechaPrestamo" ColumnName="fechaPrestamo" />
+                <ScalarProperty Name="fechaEntrega" ColumnName="fechaEntrega" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

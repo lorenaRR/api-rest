@@ -225,11 +225,18 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LibrosDTOController.cs" />
     <Compile Include="Controllers\LoginsDTOController.cs" />
+    <Compile Include="Controllers\PrestamosDTOController.cs" />
     <Compile Include="Controllers\ReservasDTOController.cs" />
     <Compile Include="Controllers\UsuariosDTOController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="ListaAutoresLibroDTO.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ListaCategoriasLibroDTO.cs">
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="LoginsDTO.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -263,6 +270,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="SeleccionarLibrosDTO.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SeleccionarPrestamosDTO.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="SeleccionarReservasDTO.cs">
@@ -350,6 +360,7 @@
     <Folder Include="Views\InsertarUsuariosDTO\" />
     <Folder Include="Views\LibrosDTO\" />
     <Folder Include="Views\LoginsDTO\" />
+    <Folder Include="Views\PrestamosDTO\" />
     <Folder Include="Views\ReservasDTO\" />
     <Folder Include="Views\UsuariosDTO\" />
   </ItemGroup>
