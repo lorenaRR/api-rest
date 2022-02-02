@@ -17,11 +17,9 @@ using System;
 public partial class SeleccionarCategoriaLibroDTO
 {
 
-    public System.Guid id_categorias_libros { get; set; }
+    public System.Guid id_categoria { get; set; }
 
-    public Nullable<System.Guid> id_categoria { get; set; }
-
-    public string isbn { get; set; }
+    public string categoria { get; set; }
 
 }
 

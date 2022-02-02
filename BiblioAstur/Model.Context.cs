@@ -63,7 +63,7 @@ public partial class BibliotecaEntities : DbContext
     }
 
 
-    public virtual ObjectResult<Nullable<int>> up_Usuarios_INS_InsertarUsuario(string dni, string nombre, string apellidos, string direccion, string telefono, string email, string usuario, string password, Nullable<bool> admin, ObjectParameter estado)
+    public virtual ObjectResult<Nullable<int>> up_Usuarios_INS_InsertarUsuario(string dni, string nombre, string apellidos, string direccion, string telefono, string email, string usuario, string password, Nullable<bool> admin, Nullable<System.DateTime> fechaNacimiento, ObjectParameter estado)
     {
 
         var dniParameter = dni != null ?
@@ -111,11 +111,16 @@ public partial class BibliotecaEntities : DbContext
             new ObjectParameter("admin", typeof(bool));
 
 
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("up_Usuarios_INS_InsertarUsuario", dniParameter, nombreParameter, apellidosParameter, direccionParameter, telefonoParameter, emailParameter, usuarioParameter, passwordParameter, adminParameter, estado);
+        var fechaNacimientoParameter = fechaNacimiento.HasValue ?
+            new ObjectParameter("fechaNacimiento", fechaNacimiento) :
+            new ObjectParameter("fechaNacimiento", typeof(System.DateTime));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("up_Usuarios_INS_InsertarUsuario", dniParameter, nombreParameter, apellidosParameter, direccionParameter, telefonoParameter, emailParameter, usuarioParameter, passwordParameter, adminParameter, fechaNacimientoParameter, estado);
     }
 
 
-    public virtual ObjectResult<Nullable<int>> up_Usuarios_UPD_ActualizarUsuario(string dni, string nombre, string apellidos, string direccion, string telefono, string email, string usuario, string password, Nullable<bool> admin, ObjectParameter estado)
+    public virtual ObjectResult<Nullable<int>> up_Usuarios_UPD_ActualizarUsuario(string dni, string nombre, string apellidos, string direccion, string telefono, string email, string usuario, string password, Nullable<bool> admin, Nullable<System.DateTime> fechaNacimiento, ObjectParameter estado)
     {
 
         var dniParameter = dni != null ?
@@ -163,7 +168,12 @@ public partial class BibliotecaEntities : DbContext
             new ObjectParameter("admin", typeof(bool));
 
 
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("up_Usuarios_UPD_ActualizarUsuario", dniParameter, nombreParameter, apellidosParameter, direccionParameter, telefonoParameter, emailParameter, usuarioParameter, passwordParameter, adminParameter, estado);
+        var fechaNacimientoParameter = fechaNacimiento.HasValue ?
+            new ObjectParameter("fechaNacimiento", fechaNacimiento) :
+            new ObjectParameter("fechaNacimiento", typeof(System.DateTime));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("up_Usuarios_UPD_ActualizarUsuario", dniParameter, nombreParameter, apellidosParameter, direccionParameter, telefonoParameter, emailParameter, usuarioParameter, passwordParameter, adminParameter, fechaNacimientoParameter, estado);
     }
 
 
@@ -460,29 +470,29 @@ public partial class BibliotecaEntities : DbContext
     }
 
 
-    public virtual ObjectResult<SeleccionarAutoresLibroDTO> up_Autores_Libros_SEL_SeleccionarAutoresLibro(string id_autor, string isbn)
+    public virtual ObjectResult<SeleccionarAutoresLibroDTO> up_Autores_Libros_SEL_SeleccionarAutoresLibro(string isbn, string id_autor)
     {
-
-        var id_autorParameter = id_autor != null ?
-            new ObjectParameter("id_autor", id_autor) :
-            new ObjectParameter("id_autor", typeof(string));
-
 
         var isbnParameter = isbn != null ?
             new ObjectParameter("isbn", isbn) :
             new ObjectParameter("isbn", typeof(string));
 
 
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SeleccionarAutoresLibroDTO>("up_Autores_Libros_SEL_SeleccionarAutoresLibro", id_autorParameter, isbnParameter);
+        var id_autorParameter = id_autor != null ?
+            new ObjectParameter("id_autor", id_autor) :
+            new ObjectParameter("id_autor", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SeleccionarAutoresLibroDTO>("up_Autores_Libros_SEL_SeleccionarAutoresLibro", isbnParameter, id_autorParameter);
     }
 
 
-    public virtual ObjectResult<SeleccionarCategoriaLibroDTO> up_Categorias_Libros_SEL_SeleccionarCategoriaLibro(string id_categorias_libros, string id_categoria, string isbn)
+    public virtual ObjectResult<SeleccionarCategoriaLibroDTO> up_Categorias_Libros_SEL_SeleccionarCategoriaLibro(string isbn, string id_categoria)
     {
 
-        var id_categorias_librosParameter = id_categorias_libros != null ?
-            new ObjectParameter("id_categorias_libros", id_categorias_libros) :
-            new ObjectParameter("id_categorias_libros", typeof(string));
+        var isbnParameter = isbn != null ?
+            new ObjectParameter("isbn", isbn) :
+            new ObjectParameter("isbn", typeof(string));
 
 
         var id_categoriaParameter = id_categoria != null ?
@@ -490,12 +500,7 @@ public partial class BibliotecaEntities : DbContext
             new ObjectParameter("id_categoria", typeof(string));
 
 
-        var isbnParameter = isbn != null ?
-            new ObjectParameter("isbn", isbn) :
-            new ObjectParameter("isbn", typeof(string));
-
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SeleccionarCategoriaLibroDTO>("up_Categorias_Libros_SEL_SeleccionarCategoriaLibro", id_categorias_librosParameter, id_categoriaParameter, isbnParameter);
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SeleccionarCategoriaLibroDTO>("up_Categorias_Libros_SEL_SeleccionarCategoriaLibro", isbnParameter, id_categoriaParameter);
     }
 
 
@@ -609,7 +614,7 @@ public partial class BibliotecaEntities : DbContext
     }
 
 
-    public virtual ObjectResult<ListaCategoriasLibroDTO> up_Categorias_Libros_SEL_ListaCategoriasLibro(string isbn)
+    public virtual int up_Autores_Libros_SEL_ListaAutoresLibro(string isbn, string id_autor)
     {
 
         var isbnParameter = isbn != null ?
@@ -617,19 +622,12 @@ public partial class BibliotecaEntities : DbContext
             new ObjectParameter("isbn", typeof(string));
 
 
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ListaCategoriasLibroDTO>("up_Categorias_Libros_SEL_ListaCategoriasLibro", isbnParameter);
-    }
+        var id_autorParameter = id_autor != null ?
+            new ObjectParameter("id_autor", id_autor) :
+            new ObjectParameter("id_autor", typeof(string));
 
 
-    public virtual ObjectResult<ListaAutoresLibroDTO> up_Autores_Libros_SEL_ListaAutoresLibro(string isbn)
-    {
-
-        var isbnParameter = isbn != null ?
-            new ObjectParameter("isbn", isbn) :
-            new ObjectParameter("isbn", typeof(string));
-
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ListaAutoresLibroDTO>("up_Autores_Libros_SEL_ListaAutoresLibro", isbnParameter);
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("up_Autores_Libros_SEL_ListaAutoresLibro", isbnParameter, id_autorParameter);
     }
 
 
@@ -674,6 +672,67 @@ public partial class BibliotecaEntities : DbContext
 
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SeleccionarPrestamosDTO>("up_Prestamos_SEL_SeleccionarPrestamos", isbnParameter, dniParameter);
+    }
+
+
+    public virtual ObjectResult<Nullable<int>> up_Prestamos_UPD_ActualizarPrestamos(string isbn, string dni, Nullable<System.DateTime> fechaPrestamo, Nullable<System.DateTime> fechaEntrega, Nullable<System.DateTime> fechaDevolucion, ObjectParameter estado)
+    {
+
+        var isbnParameter = isbn != null ?
+            new ObjectParameter("isbn", isbn) :
+            new ObjectParameter("isbn", typeof(string));
+
+
+        var dniParameter = dni != null ?
+            new ObjectParameter("dni", dni) :
+            new ObjectParameter("dni", typeof(string));
+
+
+        var fechaPrestamoParameter = fechaPrestamo.HasValue ?
+            new ObjectParameter("fechaPrestamo", fechaPrestamo) :
+            new ObjectParameter("fechaPrestamo", typeof(System.DateTime));
+
+
+        var fechaEntregaParameter = fechaEntrega.HasValue ?
+            new ObjectParameter("fechaEntrega", fechaEntrega) :
+            new ObjectParameter("fechaEntrega", typeof(System.DateTime));
+
+
+        var fechaDevolucionParameter = fechaDevolucion.HasValue ?
+            new ObjectParameter("fechaDevolucion", fechaDevolucion) :
+            new ObjectParameter("fechaDevolucion", typeof(System.DateTime));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("up_Prestamos_UPD_ActualizarPrestamos", isbnParameter, dniParameter, fechaPrestamoParameter, fechaEntregaParameter, fechaDevolucionParameter, estado);
+    }
+
+
+    public virtual ObjectResult<Nullable<int>> up_Reservas_DEL_BorrarReserva(string isbn, string dni, ObjectParameter estado)
+    {
+
+        var isbnParameter = isbn != null ?
+            new ObjectParameter("isbn", isbn) :
+            new ObjectParameter("isbn", typeof(string));
+
+
+        var dniParameter = dni != null ?
+            new ObjectParameter("dni", dni) :
+            new ObjectParameter("dni", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("up_Reservas_DEL_BorrarReserva", isbnParameter, dniParameter, estado);
+    }
+
+
+    public virtual ObjectResult<SeleccionarAutoresUnCampoDTO> up_Autores_SEL_SeleccionarAutoresUnCampo(string autor)
+    {
+
+        var autorParameter = autor != null ?
+            new ObjectParameter("autor", autor) :
+            new ObjectParameter("autor", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SeleccionarAutoresUnCampoDTO>("up_Autores_SEL_SeleccionarAutoresUnCampo", autorParameter);
     }
 
 }

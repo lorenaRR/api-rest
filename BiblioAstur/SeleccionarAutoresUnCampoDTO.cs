@@ -14,7 +14,7 @@ namespace BiblioAstur
 
 using System;
     
-public partial class ListaAutoresLibroDTO
+public partial class SeleccionarAutoresUnCampoDTO
 {
 
     public System.Guid id_autor { get; set; }

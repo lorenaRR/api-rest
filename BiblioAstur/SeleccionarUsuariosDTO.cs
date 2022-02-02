@@ -33,6 +33,8 @@ public partial class SeleccionarUsuariosDTO
 
     public Nullable<bool> admin { get; set; }
 
+    public Nullable<System.DateTime> fechaNacimiento { get; set; }
+
 }
 
 }

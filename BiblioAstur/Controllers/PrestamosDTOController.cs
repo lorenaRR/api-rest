@@ -24,6 +24,8 @@ namespace BiblioAstur.Controllers
             public string dni;
             public DateTime fechaPrestamo;
             public DateTime fechaEntrega;
+            public DateTime fechaDevolucion;
+            public DateTime fechaInvalida;
         }
         // GET: api/Autores/SeleccionarPrestamos
         [ResponseType(typeof(SeleccionarPrestamosDTO))]
@@ -66,6 +68,19 @@ namespace BiblioAstur.Controllers
             ResultadoDTO respuesta = new ResultadoDTO();
             ObjectParameter estadoObjectParameter = new ObjectParameter("estado", typeof(String));
             respuesta.Resultado = Convert.ToBoolean(db.up_Prestamos_INS_InsertarPrestamo(prestamo.isbn, prestamo.dni, prestamo.fechaPrestamo, prestamo.fechaEntrega, estadoObjectParameter).FirstOrDefault().Value);
+            respuesta.Estado = estadoObjectParameter.Value.ToString();
+            return Ok(respuesta);
+        }
+
+        // PUT api/Prestamos/ActualizarPrestamos
+        [HttpPut]
+        [ResponseType(typeof(Prestamos))]
+        [Route("api/Prestamos/ActualizarPrestamos")]
+        public IHttpActionResult ActualizarPrestamos([FromBody] Prestamos prestamo)
+        {
+            ResultadoDTO respuesta = new ResultadoDTO();
+            ObjectParameter estadoObjectParameter = new ObjectParameter("estado", typeof(String));
+            respuesta.Resultado = Convert.ToBoolean(db.up_Prestamos_UPD_ActualizarPrestamos(prestamo.isbn, prestamo.dni, prestamo.fechaPrestamo, prestamo.fechaEntrega, prestamo.fechaDevolucion, estadoObjectParameter).FirstOrDefault().Value);
             respuesta.Estado = estadoObjectParameter.Value.ToString();
             return Ok(respuesta);
         }

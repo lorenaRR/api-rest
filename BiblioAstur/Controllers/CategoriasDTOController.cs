@@ -118,18 +118,22 @@ namespace BiblioAstur.Controllers
         [HttpGet]
         [Route("api/Categorias/SeleccionarCategoriasLibro")]
 
-        public IHttpActionResult SeleccionarCategoriasLibro(String isbn)
+        public IHttpActionResult SeleccionarCategoriasLibro(String isbn, String id_categoria)
 
         {
-            List<ListaCategoriasLibroDTO> lista = null;
+            List<SeleccionarCategoriaLibroDTO> lista = null;
 
             if (isbn == null)
             {
                 isbn = "";
             }
+            if (id_categoria == null)
+            {
+                id_categoria = "";
+            }
 
 
-            lista = this.db.up_Categorias_Libros_SEL_ListaCategoriasLibro(isbn).ToList();
+            lista = this.db.up_Categorias_Libros_SEL_SeleccionarCategoriaLibro(isbn, id_categoria).ToList();
 
             if (lista.Count == 0)
             {

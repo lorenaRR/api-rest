@@ -70,6 +70,19 @@ namespace BiblioAstur.Controllers
             return Ok(respuesta);
         }
 
+        // DELETE api/Reservas/BorrarReserva
+        [HttpDelete]
+        [ResponseType(typeof(String))]
+        [Route("api/Reservas/BorrarReserva")]
+        public IHttpActionResult BorrarReserva(String isbn, String dni)
+        {
+            ResultadoDTO respuesta = new ResultadoDTO();
+            ObjectParameter estadoObjectParameter = new ObjectParameter("estado", typeof(String));
+            respuesta.Resultado = Convert.ToBoolean(db.up_Reservas_DEL_BorrarReserva(isbn, dni, estadoObjectParameter).FirstOrDefault().Value);
+            respuesta.Estado = estadoObjectParameter.Value.ToString();
+            return Ok(respuesta);
+        }
+
         public class ResultadoDTO
         {
             public bool Resultado { get; set; }

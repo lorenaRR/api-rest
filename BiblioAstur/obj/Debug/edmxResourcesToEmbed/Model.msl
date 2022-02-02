@@ -12,6 +12,7 @@
           <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="usuario" ColumnName="usuario" />
           <ScalarProperty Name="admin" ColumnName="admin" />
+          <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -94,9 +95,8 @@
     <FunctionImportMapping FunctionImportName="up_Categorias_Libros_SEL_SeleccionarCategoriaLibro" FunctionName="BibliotecaModel.Store.up_Categorias_Libros_SEL_SeleccionarCategoriaLibro">
       <ResultMapping>
         <ComplexTypeMapping TypeName="BibliotecaModel.SeleccionarCategoriaLibroDTO">
-          <ScalarProperty Name="id_categorias_libros" ColumnName="id_categorias_libros" />
           <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
-          <ScalarProperty Name="isbn" ColumnName="isbn" />
+          <ScalarProperty Name="categoria" ColumnName="categoria" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -105,23 +105,6 @@
     <FunctionImportMapping FunctionImportName="up_Categorias_Libros_DEL_BorrarCategoriaLibro" FunctionName="BibliotecaModel.Store.up_Categorias_Libros_DEL_BorrarCategoriaLibro" />
     <FunctionImportMapping FunctionImportName="up_Categorias_DEL_BorrarCategoria" FunctionName="BibliotecaModel.Store.up_Categorias_DEL_BorrarCategoria" />
     <FunctionImportMapping FunctionImportName="up_Libros_UPD_ActualizarLibro" FunctionName="BibliotecaModel.Store.up_Libros_UPD_ActualizarLibro" />
-    <FunctionImportMapping FunctionImportName="up_Categorias_Libros_SEL_ListaCategoriasLibro" FunctionName="BibliotecaModel.Store.up_Categorias_Libros_SEL_ListaCategoriasLibro">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="BibliotecaModel.ListaCategoriasLibroDTO">
-          <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
-          <ScalarProperty Name="categoria" ColumnName="categoria" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="up_Autores_Libros_SEL_ListaAutoresLibro" FunctionName="BibliotecaModel.Store.up_Autores_Libros_SEL_ListaAutoresLibro">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="BibliotecaModel.ListaAutoresLibroDTO">
-          <ScalarProperty Name="id_autor" ColumnName="id_autor" />
-          <ScalarProperty Name="nombre" ColumnName="nombre" />
-          <ScalarProperty Name="apellidos" ColumnName="apellidos" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="up_Prestamos_INS_InsertarPrestamo" FunctionName="BibliotecaModel.Store.up_Prestamos_INS_InsertarPrestamo" />
     <FunctionImportMapping FunctionImportName="up_Prestamos_SEL_SeleccionarPrestamos" FunctionName="BibliotecaModel.Store.up_Prestamos_SEL_SeleccionarPrestamos">
       <ResultMapping>
@@ -131,6 +114,19 @@
           <ScalarProperty Name="dni" ColumnName="dni" />
           <ScalarProperty Name="fechaPrestamo" ColumnName="fechaPrestamo" />
           <ScalarProperty Name="fechaEntrega" ColumnName="fechaEntrega" />
+          <ScalarProperty Name="fechaDevolucion" ColumnName="fechaDevolucion" />
+          <ScalarProperty Name="fechaInvalida" ColumnName="fechaInvalida" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="up_Prestamos_UPD_ActualizarPrestamos" FunctionName="BibliotecaModel.Store.up_Prestamos_UPD_ActualizarPrestamos" />
+    <FunctionImportMapping FunctionImportName="up_Reservas_DEL_BorrarReserva" FunctionName="BibliotecaModel.Store.up_Reservas_DEL_BorrarReserva" />
+    <FunctionImportMapping FunctionImportName="up_Autores_SEL_SeleccionarAutoresUnCampo" FunctionName="BibliotecaModel.Store.up_Autores_SEL_SeleccionarAutoresUnCampo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BibliotecaModel.SeleccionarAutoresUnCampoDTO">
+          <ScalarProperty Name="id_autor" ColumnName="id_autor" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellidos" ColumnName="apellidos" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

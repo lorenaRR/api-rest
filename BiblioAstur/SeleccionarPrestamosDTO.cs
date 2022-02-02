@@ -27,6 +27,10 @@ public partial class SeleccionarPrestamosDTO
 
     public Nullable<System.DateTime> fechaEntrega { get; set; }
 
+    public Nullable<System.DateTime> fechaDevolucion { get; set; }
+
+    public Nullable<bool> fechaInvalida { get; set; }
+
 }
 
 }

@@ -28,6 +28,7 @@ namespace BiblioAstur.Controllers
             public string email;
             public string usuario;
             public string password;
+            public DateTime fechaNacimiento;
         }
 
         // GET: api/SeleccionarUsuariosDTO/5
@@ -81,7 +82,7 @@ namespace BiblioAstur.Controllers
         {
             ResultadoDTO respuesta = new ResultadoDTO();
             ObjectParameter estadoObjectParameter = new ObjectParameter("estado", typeof(String));
-            respuesta.Resultado = Convert.ToBoolean(db.up_Usuarios_UPD_ActualizarUsuario(usuario.dni, usuario.nombre, usuario.apellidos, usuario.direccion, usuario.telefono, usuario.email, usuario.usuario, usuario.password, usuario.admin, estadoObjectParameter).FirstOrDefault().Value);
+            respuesta.Resultado = Convert.ToBoolean(db.up_Usuarios_UPD_ActualizarUsuario(usuario.dni, usuario.nombre, usuario.apellidos, usuario.direccion, usuario.telefono, usuario.email, usuario.usuario, usuario.password, usuario.admin, usuario.fechaNacimiento, estadoObjectParameter).FirstOrDefault().Value);
             respuesta.Estado = estadoObjectParameter.Value.ToString();
             return Ok(respuesta);
         }
@@ -92,10 +93,11 @@ namespace BiblioAstur.Controllers
         [Route("api/Usuarios/InsertarUsuarios")]
         public IHttpActionResult InsertarUsuarios([FromBody] Usuarios usuario)
         {
-            Console.Write(usuario);
+            usuario.usuario = usuario.dni;
+            usuario.password = usuario.email;
             ResultadoDTO respuesta = new ResultadoDTO();
             ObjectParameter estadoObjectParameter = new ObjectParameter("estado", typeof(String));
-            respuesta.Resultado = Convert.ToBoolean(db.up_Usuarios_INS_InsertarUsuario(usuario.dni, usuario.nombre, usuario.apellidos, usuario.direccion, usuario.telefono, usuario.email, usuario.usuario, usuario.password, usuario.admin, estadoObjectParameter).FirstOrDefault().Value);
+            respuesta.Resultado = Convert.ToBoolean(db.up_Usuarios_INS_InsertarUsuario(usuario.dni, usuario.nombre, usuario.apellidos, usuario.direccion, usuario.telefono, usuario.email, usuario.usuario, usuario.password, usuario.admin, usuario.fechaNacimiento, estadoObjectParameter).FirstOrDefault().Value);
             respuesta.Estado = estadoObjectParameter.Value.ToString();
             return Ok(respuesta);
         }

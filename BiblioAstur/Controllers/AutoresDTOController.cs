@@ -100,14 +100,14 @@ namespace BiblioAstur.Controllers
 
 
         // GET: api/Autores/SeleccionarAutoresLibro
-        [ResponseType(typeof(ListaAutoresLibroDTO))]
+        [ResponseType(typeof(SeleccionarAutoresLibroDTO))]
         [HttpGet]
         [Route("api/Autores/SeleccionarAutoresLibro")]
 
-        public IHttpActionResult SeleccionarAutoresLibro(string isbn)
+        public IHttpActionResult SeleccionarAutoresLibro(string isbn, string id_autor)
 
         {
-            List<ListaAutoresLibroDTO> lista = null;
+            List<SeleccionarAutoresLibroDTO> lista = null;
 
 
             if (isbn == null)
@@ -115,7 +115,40 @@ namespace BiblioAstur.Controllers
                 isbn = "";
             }
 
-            lista = this.db.up_Autores_Libros_SEL_ListaAutoresLibro( isbn).ToList();
+            if (id_autor == null)
+            {
+                id_autor = "";
+            }
+
+            lista = this.db.up_Autores_Libros_SEL_SeleccionarAutoresLibro(isbn,id_autor).ToList();
+
+            if (lista.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(lista);
+
+        }
+
+        // GET: api/Autores/SeleccionarAutoresLibroUncampo
+        [ResponseType(typeof(SeleccionarAutoresLibroDTO))]
+        [HttpGet]
+        [Route("api/Autores/SeleccionarAutoresLibroUnCampo")]
+
+        public IHttpActionResult SeleccionarAutoresLibroUnCampo(string autor)
+
+        {
+            List<SeleccionarAutoresUnCampoDTO> lista = null;
+
+
+            if (autor == null)
+            {
+                autor = "";
+            }
+
+
+            lista = this.db.up_Autores_SEL_SeleccionarAutoresUnCampo(autor).ToList();
 
             if (lista.Count == 0)
             {
