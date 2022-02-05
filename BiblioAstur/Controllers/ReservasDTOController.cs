@@ -56,6 +56,43 @@ namespace BiblioAstur.Controllers
 
         }
 
+        // GET: api/Reservas/SeleccionarReservaUsuarios
+        [ResponseType(typeof(SeleccionarReservasUsuariosDTO))]
+        [HttpGet]
+        [Route("api/Reservas/SeleccionarReservasUsuarios")]
+
+        public IHttpActionResult SeleccionarReservasUsuarios(string dni, string isbn, string titulo)
+
+        {
+            List<SeleccionarReservasUsuariosDTO> lista = null;
+
+            if (dni == null)
+            {
+                dni = "";
+            }
+
+            if (isbn == null)
+            {
+                isbn = "";
+            }
+
+            if (titulo == null)
+            {
+                titulo = "";
+            }
+
+            lista = this.db.up_Reservas_SEL_SeleccionarReservasUsuarios(dni, isbn, titulo).ToList();
+
+            if (lista.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(lista);
+
+        }
+
+
         // POST api/Reservas/InsertarReserva
         [HttpPost]
         [ResponseType(typeof(Reservas))]

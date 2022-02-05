@@ -59,6 +59,32 @@ namespace BiblioAstur.Controllers
 
         }
 
+        // GET: api/Autores/SeleccionarPrestamosUsuarios
+        [ResponseType(typeof(SeleccionarPrestamosUsuariosDTO))]
+        [HttpGet]
+        [Route("api/Prestamos/SeleccionarPrestamosUsuarios")]
+
+        public IHttpActionResult SeleccionarPrestamosUsuarios(string dni)
+
+        {
+            List<SeleccionarPrestamosUsuariosDTO> lista = null;
+
+            if (dni == null)
+            {
+                dni = "";
+            }
+
+            lista = this.db.up_Prestamos_SEL_SeleccionarPrestamosUsuarios(dni).ToList();
+
+            if (lista.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(lista);
+
+        }
+
         // POST api/Prestamos/InsertarPrestamos
         [HttpPost]
         [ResponseType(typeof(Prestamos))]

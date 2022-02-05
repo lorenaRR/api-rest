@@ -109,6 +109,9 @@
           <Parameter Name="isbn" Type="varchar" Mode="In" />
           <Parameter Name="dni" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="up_Prestamos_SEL_SeleccionarPrestamosUsuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="dni" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="up_Prestamos_UPD_ActualizarPrestamos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="isbn" Type="nvarchar" Mode="In" />
           <Parameter Name="dni" Type="nvarchar" Mode="In" />
@@ -131,6 +134,11 @@
         <Function Name="up_Reservas_SEL_SeleccionarReservas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="dni" Type="varchar" Mode="In" />
           <Parameter Name="isbn" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="up_Reservas_SEL_SeleccionarReservasUsuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="dni" Type="varchar" Mode="In" />
+          <Parameter Name="isbn" Type="varchar" Mode="In" />
+          <Parameter Name="titulo" Type="varchar" Mode="In" />
         </Function>
         <Function Name="up_Usuarios_DEL_BorrarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="dni" Type="nvarchar" Mode="In" />
@@ -352,7 +360,15 @@
             <Parameter Name="Estado" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="up_Autores_SEL_SeleccionarAutoresUnCampo" ReturnType="Collection(BibliotecaModel.SeleccionarAutoresUnCampoDTO)">
-            <Parameter Name="autor" Mode="In" Type="String" />
+          <Parameter Name="autor" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="up_Reservas_SEL_SeleccionarReservasUsuarios" ReturnType="Collection(BibliotecaModel.SeleccionarReservasUsuariosDTO)">
+            <Parameter Name="dni" Mode="In" Type="String" />
+            <Parameter Name="isbn" Mode="In" Type="String" />
+            <Parameter Name="titulo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="up_Prestamos_SEL_SeleccionarPrestamosUsuarios" ReturnType="Collection(BibliotecaModel.SeleccionarPrestamosUsuariosDTO)">
+          <Parameter Name="dni" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="LoginsDTO">
@@ -429,6 +445,26 @@
           <Property Type="Guid" Name="id_autor" Nullable="false" />
           <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="apellidos" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SeleccionarReservasUsuariosDTO">
+          <Property Type="String" Name="dni" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="isbn" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="fecha_reserva" Nullable="true" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="apellidos" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="titulo" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SeleccionarPrestamosUsuariosDTO">
+          <Property Type="Guid" Name="id_prestamo" Nullable="false" />
+          <Property Type="String" Name="isbn" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="dni" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="fechaPrestamo" Nullable="true" />
+          <Property Type="DateTime" Name="fechaEntrega" Nullable="true" />
+          <Property Type="DateTime" Name="fechaDevolucion" Nullable="true" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="apellidos" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="titulo" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="fechaInvalida" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -563,6 +599,34 @@
                 <ScalarProperty Name="id_autor" ColumnName="id_autor" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="up_Reservas_SEL_SeleccionarReservasUsuarios" FunctionName="BibliotecaModel.Store.up_Reservas_SEL_SeleccionarReservasUsuarios">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BibliotecaModel.SeleccionarReservasUsuariosDTO">
+                <ScalarProperty Name="dni" ColumnName="dni" />
+                <ScalarProperty Name="isbn" ColumnName="isbn" />
+                <ScalarProperty Name="fecha_reserva" ColumnName="fecha_reserva" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="up_Prestamos_SEL_SeleccionarPrestamosUsuarios" FunctionName="BibliotecaModel.Store.up_Prestamos_SEL_SeleccionarPrestamosUsuarios">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BibliotecaModel.SeleccionarPrestamosUsuariosDTO">
+                <ScalarProperty Name="id_prestamo" ColumnName="id_prestamo" />
+                <ScalarProperty Name="isbn" ColumnName="isbn" />
+                <ScalarProperty Name="dni" ColumnName="dni" />
+                <ScalarProperty Name="fechaPrestamo" ColumnName="fechaPrestamo" />
+                <ScalarProperty Name="fechaEntrega" ColumnName="fechaEntrega" />
+                <ScalarProperty Name="fechaDevolucion" ColumnName="fechaDevolucion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="fechaInvalida" ColumnName="fechaInvalida" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

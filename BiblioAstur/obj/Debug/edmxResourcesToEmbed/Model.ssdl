@@ -104,6 +104,9 @@
     <Parameter Name="isbn" Type="varchar" Mode="In" />
     <Parameter Name="dni" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="up_Prestamos_SEL_SeleccionarPrestamosUsuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="dni" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="up_Prestamos_UPD_ActualizarPrestamos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="isbn" Type="nvarchar" Mode="In" />
     <Parameter Name="dni" Type="nvarchar" Mode="In" />
@@ -126,6 +129,11 @@
   <Function Name="up_Reservas_SEL_SeleccionarReservas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="dni" Type="varchar" Mode="In" />
     <Parameter Name="isbn" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="up_Reservas_SEL_SeleccionarReservasUsuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="dni" Type="varchar" Mode="In" />
+    <Parameter Name="isbn" Type="varchar" Mode="In" />
+    <Parameter Name="titulo" Type="varchar" Mode="In" />
   </Function>
   <Function Name="up_Usuarios_DEL_BorrarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="dni" Type="nvarchar" Mode="In" />

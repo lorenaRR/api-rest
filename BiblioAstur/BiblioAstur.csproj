@@ -275,7 +275,13 @@
     <Compile Include="SeleccionarPrestamosDTO.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="SeleccionarPrestamosUsuariosDTO.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="SeleccionarReservasDTO.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SeleccionarReservasUsuariosDTO.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="SeleccionarUsuariosDTO.cs">

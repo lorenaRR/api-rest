@@ -735,6 +735,40 @@ public partial class BibliotecaEntities : DbContext
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SeleccionarAutoresUnCampoDTO>("up_Autores_SEL_SeleccionarAutoresUnCampo", autorParameter);
     }
 
+
+    public virtual ObjectResult<SeleccionarReservasUsuariosDTO> up_Reservas_SEL_SeleccionarReservasUsuarios(string dni, string isbn, string titulo)
+    {
+
+        var dniParameter = dni != null ?
+            new ObjectParameter("dni", dni) :
+            new ObjectParameter("dni", typeof(string));
+
+
+        var isbnParameter = isbn != null ?
+            new ObjectParameter("isbn", isbn) :
+            new ObjectParameter("isbn", typeof(string));
+
+
+        var tituloParameter = titulo != null ?
+            new ObjectParameter("titulo", titulo) :
+            new ObjectParameter("titulo", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SeleccionarReservasUsuariosDTO>("up_Reservas_SEL_SeleccionarReservasUsuarios", dniParameter, isbnParameter, tituloParameter);
+    }
+
+
+    public virtual ObjectResult<SeleccionarPrestamosUsuariosDTO> up_Prestamos_SEL_SeleccionarPrestamosUsuarios(string dni)
+    {
+
+        var dniParameter = dni != null ?
+            new ObjectParameter("dni", dni) :
+            new ObjectParameter("dni", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SeleccionarPrestamosUsuariosDTO>("up_Prestamos_SEL_SeleccionarPrestamosUsuarios", dniParameter);
+    }
+
 }
 
 }
