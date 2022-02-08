@@ -269,7 +269,13 @@
     <Compile Include="SeleccionarCategoriasDTO.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="SeleccionarFechaNacimientoDTO.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="SeleccionarLibrosDTO.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SeleccionarLibrosNoDevueltosDTO.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="SeleccionarPrestamosDTO.cs">

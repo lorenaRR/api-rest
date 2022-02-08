@@ -100,6 +100,7 @@
     <Parameter Name="fechaEntrega" Type="date" Mode="In" />
     <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
   </Function>
+  <Function Name="up_Prestamos_SEL_SeleccionarLibrosNoDevueltos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="up_Prestamos_SEL_SeleccionarPrestamos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="isbn" Type="varchar" Mode="In" />
     <Parameter Name="dni" Type="varchar" Mode="In" />
@@ -155,6 +156,10 @@
   <Function Name="up_Usuarios_SEL_Logins" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="user" Type="varchar" Mode="In" />
     <Parameter Name="pass" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="up_Usuarios_SEL_SeleccionarFechaNacimiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fecha1" Type="date" Mode="In" />
+    <Parameter Name="fecha2" Type="date" Mode="In" />
   </Function>
   <Function Name="up_Usuarios_SEL_SeleccionarUsuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="dni" Type="varchar" Mode="In" />

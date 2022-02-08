@@ -85,6 +85,28 @@ namespace BiblioAstur.Controllers
 
         }
 
+        // GET: api/Autores/SeleccionarNoDevueltos
+        [ResponseType(typeof(SeleccionarLibrosNoDevueltosDTO))]
+        [HttpGet]
+        [Route("api/Prestamos/SeleccionarNoDevueltos")]
+
+        public IHttpActionResult SeleccionarLibrosNoDevueltos()
+
+        {
+            List<SeleccionarLibrosNoDevueltosDTO> lista = null;
+
+
+            lista = this.db.up_Prestamos_SEL_SeleccionarLibrosNoDevueltos().ToList();
+
+            if (lista.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(lista);
+
+        }
+
         // POST api/Prestamos/InsertarPrestamos
         [HttpPost]
         [ResponseType(typeof(Prestamos))]

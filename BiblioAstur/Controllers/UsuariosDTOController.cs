@@ -65,6 +65,28 @@ namespace BiblioAstur.Controllers
             return Ok(lista);
 
         }
+
+        // GET: api/Usuarios/SeleccionarFechaNacimiento
+        [ResponseType(typeof(SeleccionarFechaNacimientoDTO))]
+        [HttpGet]
+        [Route("api/Usuarios/SeleccionarFechaNacimiento")]
+
+        public IHttpActionResult SeleccionarFechaNacimiento(DateTime fecha1, DateTime fecha2)
+
+        {
+            List<SeleccionarFechaNacimientoDTO> lista = null;
+
+
+            lista = this.db.up_Usuarios_SEL_SeleccionarFechaNacimiento(fecha1, fecha2).ToList();
+
+            if (lista.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(lista);
+
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

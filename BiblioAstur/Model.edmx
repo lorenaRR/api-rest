@@ -105,6 +105,7 @@
           <Parameter Name="fechaEntrega" Type="date" Mode="In" />
           <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
         </Function>
+        <Function Name="up_Prestamos_SEL_SeleccionarLibrosNoDevueltos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="up_Prestamos_SEL_SeleccionarPrestamos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="isbn" Type="varchar" Mode="In" />
           <Parameter Name="dni" Type="varchar" Mode="In" />
@@ -160,6 +161,10 @@
         <Function Name="up_Usuarios_SEL_Logins" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="user" Type="varchar" Mode="In" />
           <Parameter Name="pass" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="up_Usuarios_SEL_SeleccionarFechaNacimiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fecha1" Type="date" Mode="In" />
+          <Parameter Name="fecha2" Type="date" Mode="In" />
         </Function>
         <Function Name="up_Usuarios_SEL_SeleccionarUsuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="dni" Type="varchar" Mode="In" />
@@ -370,6 +375,11 @@
           <FunctionImport Name="up_Prestamos_SEL_SeleccionarPrestamosUsuarios" ReturnType="Collection(BibliotecaModel.SeleccionarPrestamosUsuariosDTO)">
           <Parameter Name="dni" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="up_Usuarios_SEL_SeleccionarFechaNacimiento" ReturnType="Collection(BibliotecaModel.SeleccionarFechaNacimientoDTO)">
+            <Parameter Name="fecha1" Mode="In" Type="DateTime" />
+            <Parameter Name="fecha2" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="up_Prestamos_SEL_SeleccionarLibrosNoDevueltos" ReturnType="Collection(BibliotecaModel.SeleccionarLibrosNoDevueltosDTO)" />
         </EntityContainer>
         <ComplexType Name="LoginsDTO">
         <Property Type="String" Name="dni" Nullable="false" MaxLength="50" />
@@ -465,6 +475,23 @@
           <Property Type="String" Name="apellidos" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="titulo" Nullable="true" MaxLength="50" />
           <Property Type="Boolean" Name="fechaInvalida" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SeleccionarFechaNacimientoDTO">
+          <Property Type="String" Name="dni" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="apellidos" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="direccion" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="telefono" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="usuario" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="admin" Nullable="true" />
+          <Property Type="DateTime" Name="fechaNacimiento" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SeleccionarLibrosNoDevueltosDTO">
+          <Property Type="String" Name="isbn" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="titulo" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="fechaEntrega" Nullable="true" />
+          <Property Type="String" Name="subtitulo" Nullable="true" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -627,6 +654,31 @@
                 <ScalarProperty Name="apellidos" ColumnName="apellidos" />
                 <ScalarProperty Name="titulo" ColumnName="titulo" />
                 <ScalarProperty Name="fechaInvalida" ColumnName="fechaInvalida" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="up_Usuarios_SEL_SeleccionarFechaNacimiento" FunctionName="BibliotecaModel.Store.up_Usuarios_SEL_SeleccionarFechaNacimiento">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BibliotecaModel.SeleccionarFechaNacimientoDTO">
+                <ScalarProperty Name="dni" ColumnName="dni" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="admin" ColumnName="admin" />
+                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="up_Prestamos_SEL_SeleccionarLibrosNoDevueltos" FunctionName="BibliotecaModel.Store.up_Prestamos_SEL_SeleccionarLibrosNoDevueltos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BibliotecaModel.SeleccionarLibrosNoDevueltosDTO">
+                <ScalarProperty Name="isbn" ColumnName="isbn" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="fechaEntrega" ColumnName="fechaEntrega" />
+                <ScalarProperty Name="subtitulo" ColumnName="subtitulo" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

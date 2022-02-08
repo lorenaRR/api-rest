@@ -185,6 +185,11 @@
     <FunctionImport Name="up_Prestamos_SEL_SeleccionarPrestamosUsuarios" ReturnType="Collection(BibliotecaModel.SeleccionarPrestamosUsuariosDTO)">
       <Parameter Name="dni" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="up_Usuarios_SEL_SeleccionarFechaNacimiento" ReturnType="Collection(BibliotecaModel.SeleccionarFechaNacimientoDTO)">
+      <Parameter Name="fecha1" Mode="In" Type="DateTime" />
+      <Parameter Name="fecha2" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="up_Prestamos_SEL_SeleccionarLibrosNoDevueltos" ReturnType="Collection(BibliotecaModel.SeleccionarLibrosNoDevueltosDTO)" />
   </EntityContainer>
   <ComplexType Name="LoginsDTO">
     <Property Type="String" Name="dni" Nullable="false" MaxLength="50" />
@@ -280,5 +285,22 @@
     <Property Type="String" Name="apellidos" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="titulo" Nullable="true" MaxLength="50" />
     <Property Type="Boolean" Name="fechaInvalida" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SeleccionarFechaNacimientoDTO">
+    <Property Type="String" Name="dni" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="apellidos" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="direccion" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="telefono" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="email" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="usuario" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="admin" Nullable="true" />
+    <Property Type="DateTime" Name="fechaNacimiento" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SeleccionarLibrosNoDevueltosDTO">
+    <Property Type="String" Name="isbn" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="titulo" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="fechaEntrega" Nullable="true" />
+    <Property Type="String" Name="subtitulo" Nullable="true" MaxLength="50" />
   </ComplexType>
 </Schema>
