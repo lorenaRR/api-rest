@@ -438,11 +438,9 @@
           <Property Type="String" Name="editorial" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="descripcion" Nullable="false" MaxLength="500" />
           <Property Type="Int32" Name="nPaginas" Nullable="false" />
-          <Property Type="String" Name="imagen" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="imagen" Nullable="false" MaxLength="150" />
           <Property Type="Int32" Name="stock" Nullable="false" />
-          <Property Type="Boolean" Name="reservado" Nullable="false" />
-          <Property Type="Boolean" Name="prestado" Nullable="false" />
-        </ComplexType>
+          </ComplexType>
         <ComplexType Name="ListaCategoriasLibroDTO">
           <Property Type="Guid" Name="id_categoria" Nullable="false" />
           <Property Type="String" Name="categoria" Nullable="true" MaxLength="50" />
@@ -577,9 +575,7 @@
                 <ScalarProperty Name="nPaginas" ColumnName="nPaginas" />
                 <ScalarProperty Name="imagen" ColumnName="imagen" />
                 <ScalarProperty Name="stock" ColumnName="stock" />
-                <ScalarProperty Name="reservado" ColumnName="reservado" />
-                <ScalarProperty Name="prestado" ColumnName="prestado" />
-              </ComplexTypeMapping>
+                </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="up_Libros_INS_InsertarLibro" FunctionName="BibliotecaModel.Store.up_Libros_INS_InsertarLibro" />

@@ -54,8 +54,6 @@
           <ScalarProperty Name="nPaginas" ColumnName="nPaginas" />
           <ScalarProperty Name="imagen" ColumnName="imagen" />
           <ScalarProperty Name="stock" ColumnName="stock" />
-          <ScalarProperty Name="reservado" ColumnName="reservado" />
-          <ScalarProperty Name="prestado" ColumnName="prestado" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

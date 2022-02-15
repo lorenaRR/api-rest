@@ -35,10 +35,6 @@ public partial class SeleccionarLibrosDTO
 
     public int stock { get; set; }
 
-    public bool reservado { get; set; }
-
-    public bool prestado { get; set; }
-
 }
 
 }
