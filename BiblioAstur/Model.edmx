@@ -62,6 +62,8 @@
           <Parameter Name="id_categoria" Type="varchar" Mode="In" />
           <Parameter Name="categoria" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="up_Categorias_SEL_SeleccionarNumLibrosPorCategorias" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="up_Categorias_SEL_SeleccionarNumUsuariosPorCategorias" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="up_Libros_DEL_BorrarLibro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="isbn" Type="nvarchar" Mode="In" />
           <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
@@ -76,8 +78,6 @@
           <Parameter Name="imagen" Type="nvarchar" Mode="In" />
           <Parameter Name="editorial" Type="nvarchar" Mode="In" />
           <Parameter Name="stock" Type="int" Mode="In" />
-          <Parameter Name="reservado" Type="bit" Mode="In" />
-          <Parameter Name="prestado" Type="bit" Mode="In" />
           <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
         </Function>
         <Function Name="up_Libros_SEL_SeleccionarLibros" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -172,6 +172,16 @@
           <Parameter Name="nombre" Type="varchar" Mode="In" />
           <Parameter Name="apellidos" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="up_Usuarios_UPD_ActualizarPass" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="dni" Type="nvarchar" Mode="In" />
+          <Parameter Name="password" Type="nvarchar" Mode="In" />
+          <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="up_Usuarios_UPD_ActualizarUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="dni" Type="nvarchar" Mode="In" />
+          <Parameter Name="usuario" Type="nvarchar" Mode="In" />
+          <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
+        </Function>
         <Function Name="up_Usuarios_UPD_ActualizarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="dni" Type="nvarchar" Mode="In" />
           <Parameter Name="nombre" Type="nvarchar" Mode="In" />
@@ -179,8 +189,6 @@
           <Parameter Name="direccion" Type="nvarchar" Mode="In" />
           <Parameter Name="telefono" Type="nvarchar" Mode="In" />
           <Parameter Name="email" Type="nvarchar" Mode="In" />
-          <Parameter Name="usuario" Type="nvarchar" Mode="In" />
-          <Parameter Name="password" Type="nvarchar" Mode="In" />
           <Parameter Name="admin" Type="bit" Mode="In" />
           <Parameter Name="fechaNacimiento" Type="date" Mode="In" />
           <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
@@ -217,8 +225,6 @@
             <Parameter Name="direccion" Mode="In" Type="String" />
             <Parameter Name="telefono" Mode="In" Type="String" />
             <Parameter Name="email" Mode="In" Type="String" />
-            <Parameter Name="usuario" Mode="In" Type="String" />
-            <Parameter Name="password" Mode="In" Type="String" />
             <Parameter Name="admin" Mode="In" Type="Boolean" />
             <Parameter Name="fechaNacimiento" Mode="In" Type="DateTime" />
             <Parameter Name="Estado" Mode="InOut" Type="String" />
@@ -256,8 +262,6 @@
             <Parameter Name="imagen" Mode="In" Type="String" />
             <Parameter Name="editorial" Mode="In" Type="String" />
             <Parameter Name="stock" Mode="In" Type="Int32" />
-            <Parameter Name="reservado" Mode="In" Type="Boolean" />
-            <Parameter Name="prestado" Mode="In" Type="Boolean" />
             <Parameter Name="Estado" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="up_Autores_Libros_INS_InsertarAutorLibro" ReturnType="Collection(Int32)">
@@ -380,6 +384,18 @@
             <Parameter Name="fecha2" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="up_Prestamos_SEL_SeleccionarLibrosNoDevueltos" ReturnType="Collection(BibliotecaModel.SeleccionarLibrosNoDevueltosDTO)" />
+          <FunctionImport Name="up_Usuarios_UPD_ActualizarPass" ReturnType="Collection(Int32)">
+            <Parameter Name="dni" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="Estado" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="up_Usuarios_UPD_ActualizarUser" ReturnType="Collection(Int32)">
+            <Parameter Name="dni" Mode="In" Type="String" />
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="Estado" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="up_Categorias_SEL_SeleccionarNumLibrosPorCategorias" ReturnType="Collection(BibliotecaModel.SeleccionarNumLibrosPorCategoriasDTO)" />
+          <FunctionImport Name="up_Categorias_SEL_SeleccionarNumUsuariosPorCategorias" ReturnType="Collection(BibliotecaModel.SeleccionarNumUsuariosPorCategoriasDTO)" />
         </EntityContainer>
         <ComplexType Name="LoginsDTO">
         <Property Type="String" Name="dni" Nullable="false" MaxLength="50" />
@@ -492,6 +508,14 @@
           <Property Type="String" Name="titulo" Nullable="true" MaxLength="50" />
           <Property Type="DateTime" Name="fechaEntrega" Nullable="true" />
           <Property Type="String" Name="subtitulo" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SeleccionarNumLibrosPorCategoriasDTO">
+          <Property Type="String" Name="categoria" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Total" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SeleccionarNumUsuariosPorCategoriasDTO">
+          <Property Type="String" Name="categoria" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Total" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -679,6 +703,24 @@
                 <ScalarProperty Name="titulo" ColumnName="titulo" />
                 <ScalarProperty Name="fechaEntrega" ColumnName="fechaEntrega" />
                 <ScalarProperty Name="subtitulo" ColumnName="subtitulo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="up_Usuarios_UPD_ActualizarPass" FunctionName="BibliotecaModel.Store.up_Usuarios_UPD_ActualizarPass" />
+          <FunctionImportMapping FunctionImportName="up_Usuarios_UPD_ActualizarUser" FunctionName="BibliotecaModel.Store.up_Usuarios_UPD_ActualizarUser" />
+          <FunctionImportMapping FunctionImportName="up_Categorias_SEL_SeleccionarNumLibrosPorCategorias" FunctionName="BibliotecaModel.Store.up_Categorias_SEL_SeleccionarNumLibrosPorCategorias">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BibliotecaModel.SeleccionarNumLibrosPorCategoriasDTO">
+                <ScalarProperty Name="categoria" ColumnName="categoria" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="up_Categorias_SEL_SeleccionarNumUsuariosPorCategorias" FunctionName="BibliotecaModel.Store.up_Categorias_SEL_SeleccionarNumUsuariosPorCategorias">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BibliotecaModel.SeleccionarNumUsuariosPorCategoriasDTO">
+                <ScalarProperty Name="categoria" ColumnName="categoria" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

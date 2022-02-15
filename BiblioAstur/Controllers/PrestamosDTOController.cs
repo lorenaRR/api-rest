@@ -19,7 +19,7 @@ namespace BiblioAstur.Controllers
 
         public class Prestamos
         {
-            public Guid id;
+            public Guid id_prestamo;
             public string isbn;
             public string dni;
             public DateTime fechaPrestamo;
@@ -59,7 +59,7 @@ namespace BiblioAstur.Controllers
 
         }
 
-        // GET: api/Autores/SeleccionarPrestamosUsuarios
+        // GET: api/Prestamos/SeleccionarPrestamosUsuarios
         [ResponseType(typeof(SeleccionarPrestamosUsuariosDTO))]
         [HttpGet]
         [Route("api/Prestamos/SeleccionarPrestamosUsuarios")]
@@ -111,7 +111,7 @@ namespace BiblioAstur.Controllers
         [HttpPost]
         [ResponseType(typeof(Prestamos))]
         [Route("api/Prestamos/InsertarPrestamos")]
-        public IHttpActionResult InsertarAutoresLibro([FromBody] Prestamos prestamo)
+        public IHttpActionResult InsertarPrestamos([FromBody] Prestamos prestamo)
         {
             ResultadoDTO respuesta = new ResultadoDTO();
             ObjectParameter estadoObjectParameter = new ObjectParameter("estado", typeof(String));
@@ -124,7 +124,7 @@ namespace BiblioAstur.Controllers
         [HttpPut]
         [ResponseType(typeof(Prestamos))]
         [Route("api/Prestamos/ActualizarPrestamos")]
-        public IHttpActionResult ActualizarPrestamos([FromBody] Prestamos prestamo)
+        public IHttpActionResult ActualizarLibros([FromBody] Prestamos prestamo)
         {
             ResultadoDTO respuesta = new ResultadoDTO();
             ObjectParameter estadoObjectParameter = new ObjectParameter("estado", typeof(String));
@@ -132,7 +132,6 @@ namespace BiblioAstur.Controllers
             respuesta.Estado = estadoObjectParameter.Value.ToString();
             return Ok(respuesta);
         }
-
         public class ResultadoDTO
         {
             public bool Resultado { get; set; }

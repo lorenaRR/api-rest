@@ -27,8 +27,6 @@
       <Parameter Name="direccion" Mode="In" Type="String" />
       <Parameter Name="telefono" Mode="In" Type="String" />
       <Parameter Name="email" Mode="In" Type="String" />
-      <Parameter Name="usuario" Mode="In" Type="String" />
-      <Parameter Name="password" Mode="In" Type="String" />
       <Parameter Name="admin" Mode="In" Type="Boolean" />
       <Parameter Name="fechaNacimiento" Mode="In" Type="DateTime" />
       <Parameter Name="Estado" Mode="InOut" Type="String" />
@@ -66,8 +64,6 @@
       <Parameter Name="imagen" Mode="In" Type="String" />
       <Parameter Name="editorial" Mode="In" Type="String" />
       <Parameter Name="stock" Mode="In" Type="Int32" />
-      <Parameter Name="reservado" Mode="In" Type="Boolean" />
-      <Parameter Name="prestado" Mode="In" Type="Boolean" />
       <Parameter Name="Estado" Mode="InOut" Type="String" />
     </FunctionImport>
     <FunctionImport Name="up_Autores_Libros_INS_InsertarAutorLibro" ReturnType="Collection(Int32)">
@@ -190,6 +186,18 @@
       <Parameter Name="fecha2" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="up_Prestamos_SEL_SeleccionarLibrosNoDevueltos" ReturnType="Collection(BibliotecaModel.SeleccionarLibrosNoDevueltosDTO)" />
+    <FunctionImport Name="up_Usuarios_UPD_ActualizarPass" ReturnType="Collection(Int32)">
+      <Parameter Name="dni" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+      <Parameter Name="Estado" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="up_Usuarios_UPD_ActualizarUser" ReturnType="Collection(Int32)">
+      <Parameter Name="dni" Mode="In" Type="String" />
+      <Parameter Name="usuario" Mode="In" Type="String" />
+      <Parameter Name="Estado" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="up_Categorias_SEL_SeleccionarNumLibrosPorCategorias" ReturnType="Collection(BibliotecaModel.SeleccionarNumLibrosPorCategoriasDTO)" />
+    <FunctionImport Name="up_Categorias_SEL_SeleccionarNumUsuariosPorCategorias" ReturnType="Collection(BibliotecaModel.SeleccionarNumUsuariosPorCategoriasDTO)" />
   </EntityContainer>
   <ComplexType Name="LoginsDTO">
     <Property Type="String" Name="dni" Nullable="false" MaxLength="50" />
@@ -302,5 +310,13 @@
     <Property Type="String" Name="titulo" Nullable="true" MaxLength="50" />
     <Property Type="DateTime" Name="fechaEntrega" Nullable="true" />
     <Property Type="String" Name="subtitulo" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="SeleccionarNumLibrosPorCategoriasDTO">
+    <Property Type="String" Name="categoria" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Total" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SeleccionarNumUsuariosPorCategoriasDTO">
+    <Property Type="String" Name="categoria" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Total" Nullable="true" />
   </ComplexType>
 </Schema>

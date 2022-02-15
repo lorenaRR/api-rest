@@ -47,10 +47,10 @@ namespace BiblioAstur.Controllers
 
             lista = this.db.up_Reservas_SEL_SeleccionarReservas(dni, isbn).ToList();
 
-            if (lista.Count == 0)
+            /*if (lista.Count == 0)
             {
                 return NotFound();
-            }
+            }*/
 
             return Ok(lista);
 

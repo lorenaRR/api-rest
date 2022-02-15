@@ -29,8 +29,6 @@ namespace BiblioAstur.Controllers
             public string imagen;
             public string editorial;
             public int stock;
-            public bool reservado;
-            public bool prestado;
         }
 
 
@@ -105,7 +103,7 @@ namespace BiblioAstur.Controllers
             Console.Write(libro);
             ResultadoDTO respuesta = new ResultadoDTO();
             ObjectParameter estadoObjectParameter = new ObjectParameter("estado", typeof(String));
-            respuesta.Resultado = Convert.ToBoolean(db.up_Libros_INS_InsertarLibro(libro.isbn, libro.titulo, libro.subtitulo, libro.fechaPublicacion, libro.descripcion, libro.nPaginas, libro.imagen, libro.editorial, libro.stock, libro.reservado, libro.prestado, estadoObjectParameter).FirstOrDefault().Value);
+            //respuesta.Resultado = Convert.ToBoolean(db.up_Libros_INS_InsertarLibro(libro.isbn, libro.titulo, libro.subtitulo, libro.fechaPublicacion, libro.descripcion, libro.nPaginas, libro.imagen, libro.editorial, libro.stock, estadoObjectParameter).FirstOrDefault().Value);
             respuesta.Estado = estadoObjectParameter.Value.ToString();
             return Ok(respuesta);
         }

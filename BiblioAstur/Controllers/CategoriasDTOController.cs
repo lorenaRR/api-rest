@@ -66,6 +66,48 @@ namespace BiblioAstur.Controllers
 
         }
 
+        // GET: api/Categorias/SeleccionarNumLibrosPorCategorias
+        [ResponseType(typeof(SeleccionarNumLibrosPorCategoriasDTO))]
+        [HttpGet]
+        [Route("api/Categorias/SeleccionarNumLibrosPorCategorias")]
+
+        public IHttpActionResult SeleccionarNumLibrosPorCategorias()
+
+        {
+            List<SeleccionarNumLibrosPorCategoriasDTO> lista = null;
+
+            lista = this.db.up_Categorias_SEL_SeleccionarNumLibrosPorCategorias().ToList();
+
+            if (lista.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(lista);
+
+        }
+
+        // GET: api/Categorias/SeleccionarNumUsuariosPorCategorias
+        [ResponseType(typeof(SeleccionarNumUsuariosPorCategoriasDTO))]
+        [HttpGet]
+        [Route("api/Categorias/SeleccionarNumUsuariosPorCategorias")]
+
+        public IHttpActionResult SeleccionarNumUsuariosPorCategorias()
+
+        {
+            List<SeleccionarNumUsuariosPorCategoriasDTO> lista = null;
+
+            lista = this.db.up_Categorias_SEL_SeleccionarNumUsuariosPorCategorias().ToList();
+
+            if (lista.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(lista);
+
+        }
+
         // POST api/Categorias/InsertarCategorias
         [HttpPost]
         [ResponseType(typeof(Categorias))]

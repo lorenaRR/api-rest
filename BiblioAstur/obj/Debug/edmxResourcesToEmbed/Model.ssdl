@@ -57,6 +57,8 @@
     <Parameter Name="id_categoria" Type="varchar" Mode="In" />
     <Parameter Name="categoria" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="up_Categorias_SEL_SeleccionarNumLibrosPorCategorias" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="up_Categorias_SEL_SeleccionarNumUsuariosPorCategorias" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="up_Libros_DEL_BorrarLibro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="isbn" Type="nvarchar" Mode="In" />
     <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
@@ -71,8 +73,6 @@
     <Parameter Name="imagen" Type="nvarchar" Mode="In" />
     <Parameter Name="editorial" Type="nvarchar" Mode="In" />
     <Parameter Name="stock" Type="int" Mode="In" />
-    <Parameter Name="reservado" Type="bit" Mode="In" />
-    <Parameter Name="prestado" Type="bit" Mode="In" />
     <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
   </Function>
   <Function Name="up_Libros_SEL_SeleccionarLibros" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -167,6 +167,16 @@
     <Parameter Name="nombre" Type="varchar" Mode="In" />
     <Parameter Name="apellidos" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="up_Usuarios_UPD_ActualizarPass" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="dni" Type="nvarchar" Mode="In" />
+    <Parameter Name="password" Type="nvarchar" Mode="In" />
+    <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
+  </Function>
+  <Function Name="up_Usuarios_UPD_ActualizarUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="dni" Type="nvarchar" Mode="In" />
+    <Parameter Name="usuario" Type="nvarchar" Mode="In" />
+    <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
+  </Function>
   <Function Name="up_Usuarios_UPD_ActualizarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="dni" Type="nvarchar" Mode="In" />
     <Parameter Name="nombre" Type="nvarchar" Mode="In" />
@@ -174,8 +184,6 @@
     <Parameter Name="direccion" Type="nvarchar" Mode="In" />
     <Parameter Name="telefono" Type="nvarchar" Mode="In" />
     <Parameter Name="email" Type="nvarchar" Mode="In" />
-    <Parameter Name="usuario" Type="nvarchar" Mode="In" />
-    <Parameter Name="password" Type="nvarchar" Mode="In" />
     <Parameter Name="admin" Type="bit" Mode="In" />
     <Parameter Name="fechaNacimiento" Type="date" Mode="In" />
     <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />

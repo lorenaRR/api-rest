@@ -120,7 +120,7 @@ public partial class BibliotecaEntities : DbContext
     }
 
 
-    public virtual ObjectResult<Nullable<int>> up_Usuarios_UPD_ActualizarUsuario(string dni, string nombre, string apellidos, string direccion, string telefono, string email, string usuario, string password, Nullable<bool> admin, Nullable<System.DateTime> fechaNacimiento, ObjectParameter estado)
+    public virtual ObjectResult<Nullable<int>> up_Usuarios_UPD_ActualizarUsuario(string dni, string nombre, string apellidos, string direccion, string telefono, string email, Nullable<bool> admin, Nullable<System.DateTime> fechaNacimiento, ObjectParameter estado)
     {
 
         var dniParameter = dni != null ?
@@ -153,16 +153,6 @@ public partial class BibliotecaEntities : DbContext
             new ObjectParameter("email", typeof(string));
 
 
-        var usuarioParameter = usuario != null ?
-            new ObjectParameter("usuario", usuario) :
-            new ObjectParameter("usuario", typeof(string));
-
-
-        var passwordParameter = password != null ?
-            new ObjectParameter("password", password) :
-            new ObjectParameter("password", typeof(string));
-
-
         var adminParameter = admin.HasValue ?
             new ObjectParameter("admin", admin) :
             new ObjectParameter("admin", typeof(bool));
@@ -173,7 +163,7 @@ public partial class BibliotecaEntities : DbContext
             new ObjectParameter("fechaNacimiento", typeof(System.DateTime));
 
 
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("up_Usuarios_UPD_ActualizarUsuario", dniParameter, nombreParameter, apellidosParameter, direccionParameter, telefonoParameter, emailParameter, usuarioParameter, passwordParameter, adminParameter, fechaNacimientoParameter, estado);
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("up_Usuarios_UPD_ActualizarUsuario", dniParameter, nombreParameter, apellidosParameter, direccionParameter, telefonoParameter, emailParameter, adminParameter, fechaNacimientoParameter, estado);
     }
 
 
@@ -272,7 +262,7 @@ public partial class BibliotecaEntities : DbContext
     }
 
 
-    public virtual ObjectResult<Nullable<int>> up_Libros_INS_InsertarLibro(string isbn, string titulo, string subtitulo, Nullable<System.DateTime> fechaPublicacion, string descripcion, Nullable<int> nPaginas, string imagen, string editorial, Nullable<int> stock, Nullable<bool> reservado, Nullable<bool> prestado, ObjectParameter estado)
+    public virtual ObjectResult<Nullable<int>> up_Libros_INS_InsertarLibro(string isbn, string titulo, string subtitulo, Nullable<System.DateTime> fechaPublicacion, string descripcion, Nullable<int> nPaginas, string imagen, string editorial, Nullable<int> stock, ObjectParameter estado)
     {
 
         var isbnParameter = isbn != null ?
@@ -320,17 +310,7 @@ public partial class BibliotecaEntities : DbContext
             new ObjectParameter("stock", typeof(int));
 
 
-        var reservadoParameter = reservado.HasValue ?
-            new ObjectParameter("reservado", reservado) :
-            new ObjectParameter("reservado", typeof(bool));
-
-
-        var prestadoParameter = prestado.HasValue ?
-            new ObjectParameter("prestado", prestado) :
-            new ObjectParameter("prestado", typeof(bool));
-
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("up_Libros_INS_InsertarLibro", isbnParameter, tituloParameter, subtituloParameter, fechaPublicacionParameter, descripcionParameter, nPaginasParameter, imagenParameter, editorialParameter, stockParameter, reservadoParameter, prestadoParameter, estado);
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("up_Libros_INS_InsertarLibro", isbnParameter, tituloParameter, subtituloParameter, fechaPublicacionParameter, descripcionParameter, nPaginasParameter, imagenParameter, editorialParameter, stockParameter, estado);
     }
 
 
@@ -791,6 +771,54 @@ public partial class BibliotecaEntities : DbContext
     {
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SeleccionarLibrosNoDevueltosDTO>("up_Prestamos_SEL_SeleccionarLibrosNoDevueltos");
+    }
+
+
+    public virtual ObjectResult<Nullable<int>> up_Usuarios_UPD_ActualizarPass(string dni, string password, ObjectParameter estado)
+    {
+
+        var dniParameter = dni != null ?
+            new ObjectParameter("dni", dni) :
+            new ObjectParameter("dni", typeof(string));
+
+
+        var passwordParameter = password != null ?
+            new ObjectParameter("password", password) :
+            new ObjectParameter("password", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("up_Usuarios_UPD_ActualizarPass", dniParameter, passwordParameter, estado);
+    }
+
+
+    public virtual ObjectResult<Nullable<int>> up_Usuarios_UPD_ActualizarUser(string dni, string usuario, ObjectParameter estado)
+    {
+
+        var dniParameter = dni != null ?
+            new ObjectParameter("dni", dni) :
+            new ObjectParameter("dni", typeof(string));
+
+
+        var usuarioParameter = usuario != null ?
+            new ObjectParameter("usuario", usuario) :
+            new ObjectParameter("usuario", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("up_Usuarios_UPD_ActualizarUser", dniParameter, usuarioParameter, estado);
+    }
+
+
+    public virtual ObjectResult<SeleccionarNumLibrosPorCategoriasDTO> up_Categorias_SEL_SeleccionarNumLibrosPorCategorias()
+    {
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SeleccionarNumLibrosPorCategoriasDTO>("up_Categorias_SEL_SeleccionarNumLibrosPorCategorias");
+    }
+
+
+    public virtual ObjectResult<SeleccionarNumUsuariosPorCategoriasDTO> up_Categorias_SEL_SeleccionarNumUsuariosPorCategorias()
+    {
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SeleccionarNumUsuariosPorCategoriasDTO>("up_Categorias_SEL_SeleccionarNumUsuariosPorCategorias");
     }
 
 }

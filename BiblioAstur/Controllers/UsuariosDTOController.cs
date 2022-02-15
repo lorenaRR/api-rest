@@ -104,7 +104,33 @@ namespace BiblioAstur.Controllers
         {
             ResultadoDTO respuesta = new ResultadoDTO();
             ObjectParameter estadoObjectParameter = new ObjectParameter("estado", typeof(String));
-            respuesta.Resultado = Convert.ToBoolean(db.up_Usuarios_UPD_ActualizarUsuario(usuario.dni, usuario.nombre, usuario.apellidos, usuario.direccion, usuario.telefono, usuario.email, usuario.usuario, usuario.password, usuario.admin, usuario.fechaNacimiento, estadoObjectParameter).FirstOrDefault().Value);
+            respuesta.Resultado = Convert.ToBoolean(db.up_Usuarios_UPD_ActualizarUsuario(usuario.dni, usuario.nombre, usuario.apellidos, usuario.direccion, usuario.telefono, usuario.email, usuario.admin, usuario.fechaNacimiento, estadoObjectParameter).FirstOrDefault().Value);
+            respuesta.Estado = estadoObjectParameter.Value.ToString();
+            return Ok(respuesta);
+        }
+
+        // PUT api/Usuarios/ActualizarUser
+        [HttpPut]
+        [ResponseType(typeof(Usuarios))]
+        [Route("api/Usuarios/ActualizarUser")]
+        public IHttpActionResult ActualizarUser(Usuarios usuario)
+        {
+            ResultadoDTO respuesta = new ResultadoDTO();
+            ObjectParameter estadoObjectParameter = new ObjectParameter("estado", typeof(String));
+            respuesta.Resultado = Convert.ToBoolean(db.up_Usuarios_UPD_ActualizarUser(usuario.dni, usuario.usuario, estadoObjectParameter).FirstOrDefault().Value);
+            respuesta.Estado = estadoObjectParameter.Value.ToString();
+            return Ok(respuesta);
+        }
+
+        // PUT api/Usuarios/ActualizarPass
+        [HttpPut]
+        [ResponseType(typeof(Usuarios))]
+        [Route("api/Usuarios/ActualizarPass")]
+        public IHttpActionResult ActualizarPass(Usuarios usuario)
+        {
+            ResultadoDTO respuesta = new ResultadoDTO();
+            ObjectParameter estadoObjectParameter = new ObjectParameter("estado", typeof(String));
+            respuesta.Resultado = Convert.ToBoolean(db.up_Usuarios_UPD_ActualizarPass(usuario.dni, usuario.password, estadoObjectParameter).FirstOrDefault().Value);
             respuesta.Estado = estadoObjectParameter.Value.ToString();
             return Ok(respuesta);
         }

@@ -183,5 +183,23 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="up_Usuarios_UPD_ActualizarPass" FunctionName="BibliotecaModel.Store.up_Usuarios_UPD_ActualizarPass" />
+    <FunctionImportMapping FunctionImportName="up_Usuarios_UPD_ActualizarUser" FunctionName="BibliotecaModel.Store.up_Usuarios_UPD_ActualizarUser" />
+    <FunctionImportMapping FunctionImportName="up_Categorias_SEL_SeleccionarNumLibrosPorCategorias" FunctionName="BibliotecaModel.Store.up_Categorias_SEL_SeleccionarNumLibrosPorCategorias">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BibliotecaModel.SeleccionarNumLibrosPorCategoriasDTO">
+          <ScalarProperty Name="categoria" ColumnName="categoria" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="up_Categorias_SEL_SeleccionarNumUsuariosPorCategorias" FunctionName="BibliotecaModel.Store.up_Categorias_SEL_SeleccionarNumUsuariosPorCategorias">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BibliotecaModel.SeleccionarNumUsuariosPorCategoriasDTO">
+          <ScalarProperty Name="categoria" ColumnName="categoria" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>
