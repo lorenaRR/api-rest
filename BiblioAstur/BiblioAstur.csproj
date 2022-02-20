@@ -278,6 +278,9 @@
     <Compile Include="SeleccionarLibrosNoDevueltosDTO.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="SeleccionarNumLectoresDTO.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="SeleccionarNumLibrosPorCategoriasDTO.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

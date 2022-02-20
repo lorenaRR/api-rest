@@ -198,6 +198,7 @@
     </FunctionImport>
     <FunctionImport Name="up_Categorias_SEL_SeleccionarNumLibrosPorCategorias" ReturnType="Collection(BibliotecaModel.SeleccionarNumLibrosPorCategoriasDTO)" />
     <FunctionImport Name="up_Categorias_SEL_SeleccionarNumUsuariosPorCategorias" ReturnType="Collection(BibliotecaModel.SeleccionarNumUsuariosPorCategoriasDTO)" />
+    <FunctionImport Name="up_Libros_SEL_SeleccionarNumLectores" ReturnType="Collection(BibliotecaModel.SeleccionarNumLectoresDTO)" />
   </EntityContainer>
   <ComplexType Name="LoginsDTO">
     <Property Type="String" Name="dni" Nullable="false" MaxLength="50" />
@@ -315,6 +316,10 @@
   </ComplexType>
   <ComplexType Name="SeleccionarNumUsuariosPorCategoriasDTO">
     <Property Type="String" Name="categoria" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Total" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SeleccionarNumLectoresDTO">
+    <Property Type="String" Name="titulo" Nullable="true" MaxLength="50" />
     <Property Type="Int32" Name="Total" Nullable="true" />
   </ComplexType>
 </Schema>

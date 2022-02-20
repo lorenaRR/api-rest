@@ -25,7 +25,10 @@ namespace BiblioAstur.Controllers
             public DateTime fechaPrestamo;
             public DateTime fechaEntrega;
             public DateTime fechaDevolucion;
-            public DateTime fechaInvalida;
+            public bool fechaInvalida;
+            public string nombre;
+            public string apellidos;
+            public string titulo;
         }
         // GET: api/Autores/SeleccionarPrestamos
         [ResponseType(typeof(SeleccionarPrestamosDTO))]
@@ -50,10 +53,10 @@ namespace BiblioAstur.Controllers
 
             lista = this.db.up_Prestamos_SEL_SeleccionarPrestamos(isbn, dni).ToList();
 
-            if (lista.Count == 0)
+            /*if (lista.Count == 0)
             {
                 return NotFound();
-            }
+            }*/
 
             return Ok(lista);
 
@@ -124,7 +127,7 @@ namespace BiblioAstur.Controllers
         [HttpPut]
         [ResponseType(typeof(Prestamos))]
         [Route("api/Prestamos/ActualizarPrestamos")]
-        public IHttpActionResult ActualizarLibros([FromBody] Prestamos prestamo)
+        public IHttpActionResult ActualizarPrestamos([FromBody] Prestamos prestamo)
         {
             ResultadoDTO respuesta = new ResultadoDTO();
             ObjectParameter estadoObjectParameter = new ObjectParameter("estado", typeof(String));

@@ -86,6 +86,7 @@
           <Parameter Name="subtitulo" Type="varchar" Mode="In" />
           <Parameter Name="editorial" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="up_Libros_SEL_SeleccionarNumLectores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="up_Libros_UPD_ActualizarLibro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="isbn" Type="nvarchar" Mode="In" />
           <Parameter Name="titulo" Type="nvarchar" Mode="In" />
@@ -396,6 +397,7 @@
           </FunctionImport>
           <FunctionImport Name="up_Categorias_SEL_SeleccionarNumLibrosPorCategorias" ReturnType="Collection(BibliotecaModel.SeleccionarNumLibrosPorCategoriasDTO)" />
           <FunctionImport Name="up_Categorias_SEL_SeleccionarNumUsuariosPorCategorias" ReturnType="Collection(BibliotecaModel.SeleccionarNumUsuariosPorCategoriasDTO)" />
+          <FunctionImport Name="up_Libros_SEL_SeleccionarNumLectores" ReturnType="Collection(BibliotecaModel.SeleccionarNumLectoresDTO)" />
         </EntityContainer>
         <ComplexType Name="LoginsDTO">
         <Property Type="String" Name="dni" Nullable="false" MaxLength="50" />
@@ -513,6 +515,10 @@
         </ComplexType>
         <ComplexType Name="SeleccionarNumUsuariosPorCategoriasDTO">
           <Property Type="String" Name="categoria" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Total" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SeleccionarNumLectoresDTO">
+          <Property Type="String" Name="titulo" Nullable="true" MaxLength="50" />
           <Property Type="Int32" Name="Total" Nullable="true" />
         </ComplexType>
       </Schema>
@@ -716,6 +722,14 @@
             <ResultMapping>
               <ComplexTypeMapping TypeName="BibliotecaModel.SeleccionarNumUsuariosPorCategoriasDTO">
                 <ScalarProperty Name="categoria" ColumnName="categoria" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="up_Libros_SEL_SeleccionarNumLectores" FunctionName="BibliotecaModel.Store.up_Libros_SEL_SeleccionarNumLectores">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BibliotecaModel.SeleccionarNumLectoresDTO">
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
                 <ScalarProperty Name="Total" ColumnName="Total" />
               </ComplexTypeMapping>
             </ResultMapping>

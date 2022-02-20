@@ -72,6 +72,29 @@ namespace BiblioAstur.Controllers
             return Ok(lista);
 
         }
+
+        // GET: api/SeleccionarLibros
+        [ResponseType(typeof(SeleccionarNumLectoresDTO))]
+        [HttpGet]
+        [Route("api/Libros/SeleccionarNumLectores")]
+
+        public IHttpActionResult SeleccionarNumLectores()
+
+        {
+            List<SeleccionarNumLectoresDTO> lista = null;
+
+
+
+            lista = this.db.up_Libros_SEL_SeleccionarNumLectores().ToList();
+
+            if (lista.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(lista);
+
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -103,7 +126,7 @@ namespace BiblioAstur.Controllers
             Console.Write(libro);
             ResultadoDTO respuesta = new ResultadoDTO();
             ObjectParameter estadoObjectParameter = new ObjectParameter("estado", typeof(String));
-            //respuesta.Resultado = Convert.ToBoolean(db.up_Libros_INS_InsertarLibro(libro.isbn, libro.titulo, libro.subtitulo, libro.fechaPublicacion, libro.descripcion, libro.nPaginas, libro.imagen, libro.editorial, libro.stock, estadoObjectParameter).FirstOrDefault().Value);
+            respuesta.Resultado = Convert.ToBoolean(db.up_Libros_INS_InsertarLibro(libro.isbn, libro.titulo, libro.subtitulo, libro.fechaPublicacion, libro.descripcion, libro.nPaginas, libro.imagen, libro.editorial, libro.stock, estadoObjectParameter).FirstOrDefault().Value);
             respuesta.Estado = estadoObjectParameter.Value.ToString();
             return Ok(respuesta);
         }

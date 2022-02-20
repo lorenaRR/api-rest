@@ -821,6 +821,13 @@ public partial class BibliotecaEntities : DbContext
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SeleccionarNumUsuariosPorCategoriasDTO>("up_Categorias_SEL_SeleccionarNumUsuariosPorCategorias");
     }
 
+
+    public virtual ObjectResult<SeleccionarNumLectoresDTO> up_Libros_SEL_SeleccionarNumLectores()
+    {
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SeleccionarNumLectoresDTO>("up_Libros_SEL_SeleccionarNumLectores");
+    }
+
 }
 
 }

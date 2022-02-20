@@ -199,5 +199,13 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="up_Libros_SEL_SeleccionarNumLectores" FunctionName="BibliotecaModel.Store.up_Libros_SEL_SeleccionarNumLectores">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BibliotecaModel.SeleccionarNumLectoresDTO">
+          <ScalarProperty Name="titulo" ColumnName="titulo" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>
