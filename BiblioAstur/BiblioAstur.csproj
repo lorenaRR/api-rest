@@ -263,6 +263,9 @@
     <Compile Include="SeleccionarAutoresUnCampoDTO.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="SeleccionarCatalogoDTO.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="SeleccionarCategoriaLibroDTO.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

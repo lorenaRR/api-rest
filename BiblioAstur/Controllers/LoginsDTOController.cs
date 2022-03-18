@@ -28,11 +28,6 @@ namespace BiblioAstur.Controllers
 
             lista = this.db.up_Usuarios_SEL_Logins(user, pass).ToList();
 
-            if (lista.Count == 0)
-            {
-                return NotFound();
-            }
-
             return Ok(lista);
 
         }

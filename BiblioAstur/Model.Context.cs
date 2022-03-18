@@ -828,6 +828,43 @@ public partial class BibliotecaEntities : DbContext
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SeleccionarNumLectoresDTO>("up_Libros_SEL_SeleccionarNumLectores");
     }
 
+
+    public virtual ObjectResult<SeleccionarCatalogoDTO> up_Libros_SEL_SeleccionarCatalogo(string isbn, string titulo, string subtitulo, string editorial, string autor, string categoria)
+    {
+
+        var isbnParameter = isbn != null ?
+            new ObjectParameter("isbn", isbn) :
+            new ObjectParameter("isbn", typeof(string));
+
+
+        var tituloParameter = titulo != null ?
+            new ObjectParameter("titulo", titulo) :
+            new ObjectParameter("titulo", typeof(string));
+
+
+        var subtituloParameter = subtitulo != null ?
+            new ObjectParameter("subtitulo", subtitulo) :
+            new ObjectParameter("subtitulo", typeof(string));
+
+
+        var editorialParameter = editorial != null ?
+            new ObjectParameter("editorial", editorial) :
+            new ObjectParameter("editorial", typeof(string));
+
+
+        var autorParameter = autor != null ?
+            new ObjectParameter("autor", autor) :
+            new ObjectParameter("autor", typeof(string));
+
+
+        var categoriaParameter = categoria != null ?
+            new ObjectParameter("categoria", categoria) :
+            new ObjectParameter("categoria", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SeleccionarCatalogoDTO>("up_Libros_SEL_SeleccionarCatalogo", isbnParameter, tituloParameter, subtituloParameter, editorialParameter, autorParameter, categoriaParameter);
+    }
+
 }
 
 }

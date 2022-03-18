@@ -80,6 +80,14 @@
           <Parameter Name="stock" Type="int" Mode="In" />
           <Parameter Name="Estado" Type="nvarchar" Mode="InOut" />
         </Function>
+        <Function Name="up_Libros_SEL_SeleccionarCatalogo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="isbn" Type="varchar" Mode="In" />
+          <Parameter Name="titulo" Type="varchar" Mode="In" />
+          <Parameter Name="subtitulo" Type="varchar" Mode="In" />
+          <Parameter Name="editorial" Type="varchar" Mode="In" />
+          <Parameter Name="autor" Type="varchar" Mode="In" />
+          <Parameter Name="categoria" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="up_Libros_SEL_SeleccionarLibros" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="isbn" Type="varchar" Mode="In" />
           <Parameter Name="titulo" Type="varchar" Mode="In" />
@@ -398,6 +406,14 @@
           <FunctionImport Name="up_Categorias_SEL_SeleccionarNumLibrosPorCategorias" ReturnType="Collection(BibliotecaModel.SeleccionarNumLibrosPorCategoriasDTO)" />
           <FunctionImport Name="up_Categorias_SEL_SeleccionarNumUsuariosPorCategorias" ReturnType="Collection(BibliotecaModel.SeleccionarNumUsuariosPorCategoriasDTO)" />
           <FunctionImport Name="up_Libros_SEL_SeleccionarNumLectores" ReturnType="Collection(BibliotecaModel.SeleccionarNumLectoresDTO)" />
+          <FunctionImport Name="up_Libros_SEL_SeleccionarCatalogo" ReturnType="Collection(BibliotecaModel.SeleccionarCatalogoDTO)">
+            <Parameter Name="isbn" Mode="In" Type="String" />
+            <Parameter Name="titulo" Mode="In" Type="String" />
+            <Parameter Name="subtitulo" Mode="In" Type="String" />
+            <Parameter Name="editorial" Mode="In" Type="String" />
+            <Parameter Name="autor" Mode="In" Type="String" />
+            <Parameter Name="categoria" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="LoginsDTO">
         <Property Type="String" Name="dni" Nullable="false" MaxLength="50" />
@@ -520,6 +536,20 @@
         <ComplexType Name="SeleccionarNumLectoresDTO">
           <Property Type="String" Name="titulo" Nullable="true" MaxLength="50" />
           <Property Type="Int32" Name="Total" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SeleccionarCatalogoDTO">
+          <Property Type="String" Name="isbn" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="titulo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="subtitulo" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="fechaPublicacion" Nullable="false" />
+          <Property Type="String" Name="editorial" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="500" />
+          <Property Type="Int32" Name="nPaginas" Nullable="false" />
+          <Property Type="String" Name="imagen" Nullable="false" MaxLength="150" />
+          <Property Type="Int32" Name="stock" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="apellidos" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="categoria" Nullable="false" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -731,6 +761,24 @@
               <ComplexTypeMapping TypeName="BibliotecaModel.SeleccionarNumLectoresDTO">
                 <ScalarProperty Name="titulo" ColumnName="titulo" />
                 <ScalarProperty Name="Total" ColumnName="Total" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="up_Libros_SEL_SeleccionarCatalogo" FunctionName="BibliotecaModel.Store.up_Libros_SEL_SeleccionarCatalogo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BibliotecaModel.SeleccionarCatalogoDTO">
+                <ScalarProperty Name="isbn" ColumnName="isbn" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="subtitulo" ColumnName="subtitulo" />
+                <ScalarProperty Name="fechaPublicacion" ColumnName="fechaPublicacion" />
+                <ScalarProperty Name="editorial" ColumnName="editorial" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="nPaginas" ColumnName="nPaginas" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
+                <ScalarProperty Name="stock" ColumnName="stock" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="categoria" ColumnName="categoria" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -53,11 +53,6 @@ namespace BiblioAstur.Controllers
 
             lista = this.db.up_Prestamos_SEL_SeleccionarPrestamos(isbn, dni).ToList();
 
-            /*if (lista.Count == 0)
-            {
-                return NotFound();
-            }*/
-
             return Ok(lista);
 
         }
@@ -79,11 +74,6 @@ namespace BiblioAstur.Controllers
 
             lista = this.db.up_Prestamos_SEL_SeleccionarPrestamosUsuarios(dni).ToList();
 
-            if (lista.Count == 0)
-            {
-                return NotFound();
-            }
-
             return Ok(lista);
 
         }
@@ -100,11 +90,6 @@ namespace BiblioAstur.Controllers
 
 
             lista = this.db.up_Prestamos_SEL_SeleccionarLibrosNoDevueltos().ToList();
-
-            if (lista.Count == 0)
-            {
-                return NotFound();
-            }
 
             return Ok(lista);
 

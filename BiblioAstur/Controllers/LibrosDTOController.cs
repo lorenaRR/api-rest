@@ -31,7 +31,6 @@ namespace BiblioAstur.Controllers
             public int stock;
         }
 
-
         // GET: api/SeleccionarLibros
         [ResponseType(typeof(SeleccionarLibrosDTO))]
         [HttpGet]
@@ -64,10 +63,49 @@ namespace BiblioAstur.Controllers
 
             lista = this.db.up_Libros_SEL_SeleccionarLibros(isbn, titulo, subtitulo, editorial).ToList();
 
-            if (lista.Count == 0)
+
+            return Ok(lista);
+
+        }
+
+        // GET: api/Libros/SeleccionarCatalogo
+        [ResponseType(typeof(SeleccionarCatalogoDTO))]
+        [HttpGet]
+        [Route("api/Libros/SeleccionarCatalogo")]
+
+        public IHttpActionResult SeleccionarCatalogo(string isbn, string titulo, string subtitulo, string editorial, string autor, string categoria)
+
+        {
+            List<SeleccionarCatalogoDTO> lista = null;
+
+
+            if (isbn == null)
             {
-                return NotFound();
+                isbn = "";
             }
+            if (titulo == null)
+            {
+                titulo = "";
+            }
+            if (subtitulo == null)
+            {
+                subtitulo = "";
+            }
+            if (editorial == null)
+            {
+                editorial = "";
+            }
+            if (autor == null)
+            {
+                autor = "";
+            }
+            if (categoria == null)
+            {
+                categoria = "";
+            }
+
+
+            lista = this.db.up_Libros_SEL_SeleccionarCatalogo(isbn, titulo, subtitulo, editorial, autor, categoria).ToList();
 
             return Ok(lista);
 
